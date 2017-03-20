@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>120</y>
+      <x>950</x>
+      <y>90</y>
       <w>140</w>
       <h>110</h>
     </coordinates>
@@ -16,57 +16,168 @@
 +coast()
 +forward()
 +reverse()
-+brake()</panel_attributes>
++brake()
++state()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>700</x>
-      <y>130</y>
+      <x>790</x>
+      <y>110</y>
       <w>110</w>
-      <h>50</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Motors
 --
 --
-+drivingAction()</panel_attributes>
++setState()
++getState()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>150</y>
-      <w>90</w>
+      <x>890</x>
+      <y>130</y>
+      <w>80</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=2</panel_attributes>
-    <additional_attributes>70.0;20.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;20.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>580</x>
-      <y>140</y>
-      <w>80</w>
-      <h>80</h>
+      <x>620</x>
+      <y>130</y>
+      <w>100</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>MotorsService
 --
-+drivingAction()</panel_attributes>
++setMotorsSate()
++getMotorsSate()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>150</y>
-      <w>100</w>
-      <h>30</h>
+      <x>670</x>
+      <y>130</y>
+      <w>140</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+    <additional_attributes>10.0;20.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>770</x>
+      <y>50</y>
+      <w>340</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>MotorDriver</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>240</x>
+      <y>170</y>
+      <w>170</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>RobotTrike</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>770</x>
+      <y>270</y>
+      <w>340</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>SonarSensor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>650</x>
+      <y>330</y>
+      <w>80</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>SonarService
+--
++start()
++stop()
++getDistance()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>340</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>250</y>
+      <w>110</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>RobotManager
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>770</x>
+      <y>500</y>
+      <w>340</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Display</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>620</x>
+      <y>560</y>
+      <w>80</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>DisplayService
+--
+?</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>570</y>
+      <w>170</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;20.0</additional_attributes>
   </element>
 </diagram>
