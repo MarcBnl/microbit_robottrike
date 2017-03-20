@@ -1,0 +1,12 @@
+{
+  "name": "microbit-robottrike",
+  "version": "0.0.0",
+  "bin": "./source",
+  "private": true,
+  "description": "project to create a robot trike with the micro bit",
+  "author": "MarcBnl",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "microbit": "^2.0.0-rc8"
+  }
+}
