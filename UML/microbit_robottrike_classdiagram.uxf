@@ -283,4 +283,41 @@ P7 echo
 </panel_attributes>
     <additional_attributes/>
   </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>830</x>
+      <y>610</y>
+      <w>110</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>MicroBitDisplay
+--
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>80</x>
+      <y>80</y>
+      <w>370</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Warning!!!
+bg=yellow
+
+micro:bit runtime components should always be brought up as global variables.
+They should not be created as local variables - either in your main method or 
+anywhere else. The reason for this is the the runtime is a multi-threaded 
+environment, and any variables created in stack memory (like local variables) 
+may be paged out by the scheduler, and result in instability if they utilise 
+interrupts or are accessed by other threads. So... don't do it!
+
+https://lancaster-university.github.io/microbit-docs/advanced/#using-components-directly
+</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>
