@@ -3,8 +3,6 @@
 MicroBitDisplay display;
 
 int main() {
-	while(1){
-        display.scroll(":-)");
-    }
+    display.scroll("Robot-trike");
 	release_fiber();
 }
