@@ -30,11 +30,11 @@
       <w>110</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>Motors
+    <panel_attributes>MotorControl
 --
 --
-+setFunction()
-+getFunction()</panel_attributes>
++setMotorFunction()
++getMotorFunction()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -52,15 +52,15 @@ m1=2</panel_attributes>
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>450</x>
+      <x>460</x>
       <y>210</y>
-      <w>120</w>
+      <w>100</w>
       <h>90</h>
     </coordinates>
-    <panel_attributes>MotorsService
+    <panel_attributes>MotorService
 --
-+setMotorsFunction()
-+getMotorsFunction()</panel_attributes>
++setMotorFunction()
++getMotorFunction()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -141,7 +141,7 @@ m1=2</panel_attributes>
       <w>110</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>RobotManager
+    <panel_attributes>RobotTrikeManager
 --
 --
 </panel_attributes>
