@@ -1,48 +1,41 @@
 #include "MicroBit.h"
+#include <DigitalInOut.h>
+
+#include "source/Display/DisplayControl.h"
+#include "source/MotorDriver/MotorControl.h"
 
 MicroBitDisplay display;
 
-void quickTestMotors(void);
-
 int main() {
-    display.scroll("3.2.1");
-    display.scrollAsync(Start...);
-    quickTestMotors();
-    display.scrollAsync(End...);
+    display.scroll("321");
+
+    // DigitalInOut P0(MICROBIT_PIN_P0);P0.output();
+    // DigitalInOut P16(MICROBIT_PIN_P16);P16.output();
+    // DigitalInOut P8(MICROBIT_PIN_P8);P8.output();
+    // DigitalInOut P12(MICROBIT_PIN_P12);P12.output();
+    // P0.write(1);
+    // P16.write(0);
+    // P8.write(1);
+    // P12.write(0);
+
+// const uint8_t   coast[]={0,0,1,0,0}; MicroBitImage coastImage(1,5,coast);
+// const uint8_t reverse[]={0,0,1,1,1}; MicroBitImage reverseImage(1,5,reverse);
+// MicroBitImage displayImage(5,5);
+// displayImage.paste(coastImage,0,0);
+// displayImage.paste(reverseImage,4,0);
+// display.print(displayImage);
+// fiber_sleep(50000);
+
+    dsplCtrl::DisplayControl dpc;
+    dpc.showMotorsFunction(1,2);
+// fiber_sleep(50000);
+
+    display.print(dpc.getDisplayImage());
+
+    while(1){
+        fiber_sleep(500);
+    }
+
+
 	release_fiber();
 }
-
-void quickTestMotors(void){
-    //define pins
-    MicroBitPin M1P8(MICROBIT_ID_IO_P8,MICROBIT_PIN_P8,PIN_CAPABILITY_BOTH);
-    MicroBitPin M1P12(MICROBIT_ID_IO_P12,MICROBIT_PIN_P12,PIN_CAPABILITY_BOTH);
-    MicroBitPin M2P0(MICROBIT_ID_IO_P0,MICROBIT_PIN_P0,PIN_CAPABILITY_BOTH);
-    MicroBitPin M1P16(MICROBIT_ID_IO_P16,MICROBIT_PIN_P16,PIN_CAPABILITY_BOTH);
-    //coast motors
-    M1P8.setDigitalValue(0);
-    M1P12.setDigitalValue(0);
-    M2P0.setDigitalValue(0);
-    M2P16.setDigitalValue(0);
-    fiber_sleep(1000);
-    //forward motor 1
-    M1P8.setDigitalValue(1);
-    fiber_sleep(5000);
-    M1P8.setDigitalValue(0);
-    // //reverse motor 1
-    // M1P12.setDigitalValue(1);
-    // fiber_sleep(5000);
-    // M1P12.setDigitalValue(0);
-    // //forward motor 2
-    // M2P0.setDigitalValue(1);
-    // fiber_sleep(5000);
-    // M2P0.setDigitalValue(0);
-    // //reverse motor 2
-    // M2P16.setDigitalValue(1);
-    // fiber_sleep(5000);
-    // M2P16.setDigitalValue(0);
-    // //coast motors
-    M1P8.setDigitalValue(0);
-    M1P12.setDigitalValue(0);
-    M2P0.setDigitalValue(0);
-    M2P16.setDigitalValue(0);    
-};
