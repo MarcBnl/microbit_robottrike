@@ -6,7 +6,9 @@ void quickTestMotors(void);
 
 int main() {
     display.scroll("3.2.1");
+    display.scrollAsync(Start...);
     quickTestMotors();
+    display.scrollAsync(End...);
 	release_fiber();
 }
 
