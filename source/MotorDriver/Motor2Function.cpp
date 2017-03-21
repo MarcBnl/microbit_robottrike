@@ -25,11 +25,11 @@ void Motor2Function::coast(void){
 };
 
 void Motor2Function::forward(void){
-    normalDirection=true?write(1,0):write(0,1)
+    normalDirection==true?write(1,0):write(0,1)
 };
 
 void Motor2Function::reverse(void){
-    normalDirection=true?write(0,1):write(1,0)
+    normalDirection==true?write(0,1):write(1,0)
 };
 
 void Motor2Function::brake(void){
@@ -41,7 +41,7 @@ mtrCtrl::MTRFUNCTIONS Motor2Function::getFunction(void){
     int P16;
     read(P0,P16);
     int function;
-    normalDirection=true?function=P0*2+P16*1:function=P16*2+P0*1;
+    normalDirection==true?function=P0*2+P16*1:function=P16*2+P0*1;
     switch (function){
         case 0:
             return mtrCtrl::MTRFUNCTIONS::COAST; break;
