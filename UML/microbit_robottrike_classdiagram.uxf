@@ -18,7 +18,7 @@
 +forward()
 +reverse()
 +brake()
-+turn()
++spin()
 +getFunction()</panel_attributes>
     <additional_attributes/>
   </element>
@@ -78,9 +78,9 @@ m1=2</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>486</x>
-      <y>90</y>
+      <y>63</y>
       <w>459</w>
-      <h>180</h>
+      <h>207</h>
     </coordinates>
     <panel_attributes>namespace mtrdrv</panel_attributes>
     <additional_attributes/>
@@ -259,13 +259,13 @@ m1=2</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>495</x>
-      <y>117</y>
-      <w>153</w>
+      <y>90</y>
+      <w>198</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>enum motorFunc
 --
-+{forward,reverse,brake,coast,turn}</panel_attributes>
++{coast=0,reverse=1,forward=2,brake=3,spin}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
