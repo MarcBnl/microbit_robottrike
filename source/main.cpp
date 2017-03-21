@@ -28,19 +28,19 @@ void quickTestMotors(void){
     M1P8.setDigitalValue(1);
     fiber_sleep(5000);
     M1P8.setDigitalValue(0);
-    //reverse motor 1
-    M1P12.setDigitalValue(1);
-    fiber_sleep(5000);
-    M1P12.setDigitalValue(0);
-    //forward motor 2
-    M2P0.setDigitalValue(1);
-    fiber_sleep(5000);
-    M2P0.setDigitalValue(0);
-    //reverse motor 2
-    M2P16.setDigitalValue(1);
-    fiber_sleep(5000);
-    M2P16.setDigitalValue(0);
-    //coast motors
+    // //reverse motor 1
+    // M1P12.setDigitalValue(1);
+    // fiber_sleep(5000);
+    // M1P12.setDigitalValue(0);
+    // //forward motor 2
+    // M2P0.setDigitalValue(1);
+    // fiber_sleep(5000);
+    // M2P0.setDigitalValue(0);
+    // //reverse motor 2
+    // M2P16.setDigitalValue(1);
+    // fiber_sleep(5000);
+    // M2P16.setDigitalValue(0);
+    // //coast motors
     M1P8.setDigitalValue(0);
     M1P12.setDigitalValue(0);
     M2P0.setDigitalValue(0);
