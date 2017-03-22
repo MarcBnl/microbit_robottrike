@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>468</x>
-      <y>153</y>
+      <y>171</y>
       <w>99</w>
       <h>54</h>
     </coordinates>
@@ -20,7 +20,7 @@
     <id>Relation</id>
     <coordinates>
       <x>558</x>
-      <y>126</y>
+      <y>144</y>
       <w>99</w>
       <h>72</h>
     </coordinates>
@@ -32,7 +32,7 @@ m1=1</panel_attributes>
     <id>UMLInterface</id>
     <coordinates>
       <x>306</x>
-      <y>225</y>
+      <y>243</y>
       <w>90</w>
       <h>81</h>
     </coordinates>
@@ -46,7 +46,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>351</x>
-      <y>171</y>
+      <y>189</y>
       <w>135</w>
       <h>90</h>
     </coordinates>
@@ -57,18 +57,18 @@ m1=1</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>432</x>
-      <y>45</y>
+      <y>63</y>
       <w>504</w>
       <h>252</h>
     </coordinates>
-    <panel_attributes>MotorDriver</panel_attributes>
+    <panel_attributes>Motors</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
       <x>45</x>
-      <y>243</y>
+      <y>261</y>
       <w>153</w>
       <h>198</h>
     </coordinates>
@@ -79,18 +79,18 @@ m1=1</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>477</x>
-      <y>333</y>
+      <y>351</y>
       <w>306</w>
       <h>162</h>
     </coordinates>
-    <panel_attributes>SonarSensor</panel_attributes>
+    <panel_attributes>Sonar</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLInterface</id>
     <coordinates>
       <x>369</x>
-      <y>387</y>
+      <y>405</y>
       <w>72</w>
       <h>90</h>
     </coordinates>
@@ -105,7 +105,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>405</x>
-      <y>396</y>
+      <y>414</y>
       <w>144</w>
       <h>36</h>
     </coordinates>
@@ -116,7 +116,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>72</x>
-      <y>288</y>
+      <y>306</y>
       <w>99</w>
       <h>54</h>
     </coordinates>
@@ -129,8 +129,8 @@ m1=1</panel_attributes>
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>342</x>
-      <y>594</y>
+      <x>540</x>
+      <y>621</y>
       <w>72</w>
       <h>72</h>
     </coordinates>
@@ -142,19 +142,19 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>603</y>
-      <w>423</w>
-      <h>36</h>
+      <x>576</x>
+      <y>630</y>
+      <w>225</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;450.0;20.0</additional_attributes>
+    <additional_attributes>10.0;10.0;230.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLInterface</id>
     <coordinates>
       <x>945</x>
-      <y>153</y>
+      <y>171</y>
       <w>72</w>
       <h>135</h>
     </coordinates>
@@ -173,7 +173,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>450</x>
-      <y>252</y>
+      <y>270</y>
       <w>243</w>
       <h>36</h>
     </coordinates>
@@ -186,7 +186,7 @@ m1=1</panel_attributes>
     <id>UMLInterface</id>
     <coordinates>
       <x>810</x>
-      <y>369</y>
+      <y>387</y>
       <w>72</w>
       <h>90</h>
     </coordinates>
@@ -201,7 +201,7 @@ echo (in)
     <id>UMLNote</id>
     <coordinates>
       <x>0</x>
-      <y>54</y>
+      <y>72</y>
       <w>369</w>
       <h>126</h>
     </coordinates>
@@ -223,7 +223,7 @@ https://lancaster-university.github.io/microbit-docs/advanced/#using-components-
     <id>UMLClass</id>
     <coordinates>
       <x>639</x>
-      <y>72</y>
+      <y>90</y>
       <w>126</w>
       <h>108</h>
     </coordinates>
@@ -243,7 +243,7 @@ https://lancaster-university.github.io/microbit-docs/advanced/#using-components-
     <id>UMLClass</id>
     <coordinates>
       <x>792</x>
-      <y>180</y>
+      <y>198</y>
       <w>126</w>
       <h>108</h>
     </coordinates>
@@ -263,7 +263,7 @@ https://lancaster-university.github.io/microbit-docs/advanced/#using-components-
     <id>Relation</id>
     <coordinates>
       <x>558</x>
-      <y>171</y>
+      <y>189</y>
       <w>252</w>
       <h>90</h>
     </coordinates>
@@ -275,7 +275,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>783</x>
-      <y>594</y>
+      <y>612</y>
       <w>108</w>
       <h>63</h>
     </coordinates>
@@ -292,11 +292,133 @@ m1=1</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>738</x>
-      <y>549</y>
+      <y>567</y>
       <w>198</w>
       <h>144</h>
     </coordinates>
     <panel_attributes>Display</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>387</x>
+      <y>765</y>
+      <w>90</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>_:RobotTrikeManager_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>423</x>
+      <y>783</y>
+      <w>27</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>423</x>
+      <y>828</y>
+      <w>18</w>
+      <h>396</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>495</x>
+      <y>765</y>
+      <w>90</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>_:Sonar_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>603</x>
+      <y>765</y>
+      <w>90</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>_:MotorDriver_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>711</x>
+      <y>765</y>
+      <w>90</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>_:Display_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>531</x>
+      <y>855</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>531</x>
+      <y>783</y>
+      <w>27</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>639</x>
+      <y>783</y>
+      <w>27</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>747</x>
+      <y>783</y>
+      <w>27</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>837</y>
+      <w>117</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+syncMsg</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>

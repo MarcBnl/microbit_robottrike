@@ -6,7 +6,7 @@ namespace dsplCtrl{
         displayImage(colums,rows)
     {
         displayImage.clear();
-        MicroBitMessageBus msgBus;
+        //MicroBitMessageBus msgBus; SINCE IS A SYSTEM RUNTIME COMPONENT MUST BE A GLOBAL VARIABLE
         msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
         msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
         msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
@@ -19,7 +19,7 @@ namespace dsplCtrl{
 
     DisplayControl::~DisplayControl(void)
     {
-        MicroBitMessageBus msgBus;
+        //MicroBitMessageBus msgBus; SINCE IS A SYSTEM RUNTIME COMPONENT MUST BE A GLOBAL VARIABLE
         msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
         msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
         msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);

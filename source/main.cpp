@@ -9,8 +9,10 @@
 
 void displayUpdate(MicroBitEvent);
 
+/*GLOBAL RUNTIME COMPONENTS*/
 MicroBitMessageBus msgBus;
 MicroBitDisplay display;
+/*GLOBAL OBJECTS*/
 dsplCtrl::DisplayControl displCtrl;
 
 int main() {
@@ -38,3 +40,14 @@ void displayUpdate(MicroBitEvent)
     //https://lancaster-university.github.io/microbit-docs/ubit/messageBus/
     display.print(displCtrl.getDisplayImage());
 }
+
+/*
+WARNING
+=======
+micro:bit runtime components should always be brought up as global variables.
+They should not be created as local variables - either in your main method or 
+anywhere else. The reason for this is the the runtime is a multi-threaded 
+environment, and any variables created in stack memory (like local variables) 
+may be paged out by the scheduler, and result in instability if they utilise 
+interrupts or are accessed by other threads. So... don't do it!
+*/
