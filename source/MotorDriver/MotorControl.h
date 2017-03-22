@@ -4,8 +4,8 @@
 #include "source/MotorDriver/Motor1Function.h"
 #include "source/MotorDriver/Motor2Function.h"
 
-#define MICROBIT_ID_MOTOR1 1
-#define MICROBIT_ID_MOTOR2 2
+#define MICROBIT_ID_MOTOR1 151
+#define MICROBIT_ID_MOTOR2 152
 #define MICROBIT_MOTOR_FUNCTION_EVT_COAST   0
 #define MICROBIT_MOTOR_FUNCTION_EVT_REVERSE 1
 #define MICROBIT_MOTOR_FUNCTION_EVT_FORWARD 2

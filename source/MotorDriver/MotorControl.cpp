@@ -5,7 +5,7 @@ namespace mtrCtrl{
     MotorControl::MotorControl(void):
         motor1F(),
         motor2F()
-    {
+    {      
         //FIXME
         motor1F.reverseDirections();
         //OR

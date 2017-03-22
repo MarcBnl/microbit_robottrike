@@ -18,7 +18,7 @@ int main() {
 
     msgBus.listen(MICROBIT_ID_TEST,MICROBIT_DISPLAY_EVT_UPDATE,displayUpdate);
     
-    displCtrl.updateMotorsInfo(1,2);
+    displCtrl.updateMotorsInfo(MICROBIT_MOTOR_FUNCTION_EVT_FORWARD,mtrCtrl::MOTORFUNCTIONS.REVERSE);
     displCtrl.updateSonarInfo(150);
     display.print(displCtrl.getDisplayImage());
     fiber_sleep(3000);//ms 

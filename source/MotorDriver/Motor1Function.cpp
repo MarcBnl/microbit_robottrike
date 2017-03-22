@@ -11,6 +11,7 @@ namespace mtrCtrl{
         P8.output();
         P12.output();
         normalDirection=true;
+        coast();
     };
 
     void Motor1Function::writeToPins(int valueP8, int valueP12)

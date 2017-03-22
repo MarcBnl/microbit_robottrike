@@ -11,7 +11,7 @@ namespace mtrCtrl{
         DigitalInOut P16;
         public:
             Motor2Function(void);
-            ~Motor2Function(void){};
+            ~Motor2Function(void){coast();};
             void reverseDirections(void);
             void coast(void);
             void forward(void);
