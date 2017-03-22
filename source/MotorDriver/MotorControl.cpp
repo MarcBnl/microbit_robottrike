@@ -12,7 +12,7 @@ namespace mtrCtrl{
         motor2F.reverseDirections();
     };
 
-    void MotorControl::setMotorFunction(MTRFUNCTIONS function)
+    void MotorControl::setMotorFunction(MOTORFUNCTIONS function)
     {
         switch (function){
             case COAST:
@@ -25,7 +25,7 @@ namespace mtrCtrl{
                 break;
             case FORWARD:
                 motor1F.forward();
-                motor2F.forward();        
+                motor2F.forward();
                 break;
             case BRAKE:
                 motor1F.brake();
@@ -36,13 +36,13 @@ namespace mtrCtrl{
                 motor2F.reverse();
                 wait_us(spinDuration_us);
                 motor1F.coast();
-                motor2F.coast();            
+                motor2F.coast();
                 break;
             default:
         }
     };
 
-    void MotorControl::getMotorFunction(MTRFUNCTIONS &funcM1, MTRFUNCTIONS &funcM2)
+    void MotorControl::getMotorFunction(MOTORFUNCTIONS &funcM1, MOTORFUNCTIONS &funcM2)
     {
         funcM1=motor1F.getFunction();
         funcM2=motor2F.getFunction();

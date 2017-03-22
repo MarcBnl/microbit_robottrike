@@ -6,7 +6,29 @@ namespace dsplCtrl{
         displayImage(colums,rows)
     {
         displayImage.clear();
+        MicroBitMessageBus msgBus;
+        msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
+        msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
+        msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
+        msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
+        msgBus.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
+        msgBus.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
+        msgBus.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
+        msgBus.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
     };
+
+    DisplayControl::~DisplayControl(void)
+    {
+        MicroBitMessageBus msgBus;
+        msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
+        msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
+        msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
+        msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
+        msgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
+        msgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
+        msgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
+        msgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);        
+    }
 
     MicroBitImage DisplayControl::getDisplayImage(void)
     {
@@ -15,9 +37,33 @@ namespace dsplCtrl{
 
     void DisplayControl::updateMotorsInfo(int funcM1, int funcM2)
     {
-        pasteMotorImage(funcM1,motor1Col,motor1Row);
-        pasteMotorImage(funcM2,motor2Col,motor2Row);
+        updateImageWithMotorInfo(funcM1,motor1Col,motor1Row);
+        updateImageWithMotorInfo(funcM2,motor2Col,motor2Row);
         updateDisplay();
+    };
+
+    void DisplayControl::updateMotor1Info(MicroBitEvent e)
+    {
+        if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_FORWARD)
+            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_FORWARD,motor1Col,motor1Row);
+        else if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_REVERSE)
+            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_REVERSE,motor1Col,motor1Row);
+        else if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_COAST) 
+            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_COAST,motor1Col,motor1Row);
+        else (e.value==MICROBIT_MOTOR_FUNCTION_EVT_BRAKE)
+            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_BRAKE,motor1Col,motor1Row);
+    };
+
+    void DisplayControl::updateMotor2Info(MicroBitEvent e)
+    {
+        if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_FORWARD)
+            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_FORWARD,motor2Col,motor2Row);
+        else if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_REVERSE)
+            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_REVERSE,motor2Col,motor2Row);
+        else if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_COAST) 
+            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_COAST,motor2Col,motor2Row);
+        else (e.value==MICROBIT_MOTOR_FUNCTION_EVT_BRAKE)
+            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_BRAKE,motor2Col,motor2Row);
     };
 
     void DisplayControl::updateSonarInfo(int distancePercent)
@@ -42,7 +88,7 @@ namespace dsplCtrl{
             displayImage.paste(_100Image,sonarCol,sonarRow);
     };
 
-    void DisplayControl::updateImageWithMotorInfo(int funcM, int col, int row)
+    void DisplayControl::updateImageWithMotorInfo(int motorFunction, int col, int row)
     {
         static const uint8_t   coast[]={0,0,1,0,0}; MicroBitImage coastImage(1,5,coast);
         static const uint8_t reverse[]={0,0,1,1,1}; MicroBitImage reverseImage(1,5,reverse);
@@ -52,14 +98,14 @@ namespace dsplCtrl{
         //FIXME:
         //USE THE ENUM MOTORFUNCTIONS FROM MOTORCONTROL
         MicroBitImage motorImage();
-        switch (funcM){
-            case 0://mtrCtrl::MTRFUNCTIONS::COAST:
+        switch (motorFunction){
+            case MICROBIT_MOTOR_FUNCTION_EVT_COAST:
                 displayImage.paste(coastImage,col,row); break;
-            case 1://mtrCtrl::MTRFUNCTIONS::REVERSE:
+            case MICROBIT_MOTOR_FUNCTION_EVT_REVERSE:
                 displayImage.paste(reverseImage,col,row); break;
-                //motorImage=forwardImage; break;
+            case MICROBIT_MOTOR_FUNCTION_EVT_FORWARD:
                 displayImage.paste(forwardImage,col,row); break;
-            case 3://mtrCtrl::MTRFUNCTIONS::BRAKE:
+            case MICROBIT_MOTOR_FUNCTION_EVT_BRAKE:
                 displayImage.paste(brakeImage,col,row); break;
             default:
                 break;

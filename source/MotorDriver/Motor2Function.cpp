@@ -33,21 +33,25 @@ namespace mtrCtrl{
     void Motor2Function::coast(void)
     {
         writeToPins(0,0);
+        MicrobitEvent evt(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST);
     };
 
     void Motor2Function::forward(void)
     {
-        normalDirection==true?writeToPins(1,0):writeToPins(0,1)
+        normalDirection==true?writeToPins(1,0):writeToPins(0,1);
+        MicrobitEvent evt(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD);
     };
 
     void Motor2Function::reverse(void)
     {
-        normalDirection==true?writeToPins(0,1):writeToPins(1,0)
+        normalDirection==true?writeToPins(0,1):writeToPins(1,0);
+        MicrobitEvent evt(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE);
     };
 
     void Motor2Function::brake(void)
     {
         writeToPins(1,1);
+        MicrobitEvent evt(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE);
     };
 
     MOTORFUNCTIONS Motor2Function::getFunction(void)

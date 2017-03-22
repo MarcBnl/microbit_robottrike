@@ -17,13 +17,15 @@ namespace dsplCtrl{
         static const int sonarRow=1;      
         public:
             DisplayControl(void);
-            ~DisplayControl(void){};
+            ~DisplayControl(void);
             MicroBitImage getDisplayImage(void);
             void updateMotorsInfo(int funcM1,int funcM2);
+            void updateMotor1Info(MicroBitEvent e);
+            void updateMotor2Info(MicroBitEvent e);
             void updateSonarInfo(int distancePercent);
         private:
             MicroBitImage displayImage;
-            void updateImageWithMotorInfo(int funcM, int col, int row);
+            void updateImageWithMotorInfo(int motorFunction, int col, int row);
     };
 
 } /*dsplCtrl*/
