@@ -5,7 +5,10 @@
 
 namespace dsplCtrl{
 
-    class DisplayControl {
+    class DisplayControl 
+    {
+        static const int colums=5;
+        static const int rows=5;
         static const int motor1Col=0;
         static const int motor1Row=0;
         static const int motor2Col=4;
@@ -14,15 +17,10 @@ namespace dsplCtrl{
             DisplayControl(void);
             ~DisplayControl(void){};
             MicroBitImage getDisplayImage(void);
-    // void updateDisplay(void);
-            // void showMotorsFunction(mtrCtrl::MTRFUNCTIONS &funcM1, mtrCtrl::MTRFUNCTIONS &funcM2);
-            void showMotorsFunction(int funcM1,int funcM2);
+            void updateMotorsInfo(int funcM1,int funcM2);
         private:
             MicroBitImage displayImage;
-            void clearDisplay(void);
-            void updateDisplay(void);
-            // void pasteMotorImage(mtrCtrl::MTRFUNCTIONS funcM, int col, int row);
-            void pasteMotorImage(int funcM, int col, int row);
+            void updateImageWithMotorInfo(int funcM, int col, int row);
     };
 
 } /*dsplCtrl*/

@@ -1,42 +1,51 @@
-// #include "MotorControl.h"
+#include "MotorControl.h"
 
-// MotorControl::MotorControl(void):Motor1(),Motor2(){
-//     //FIXME
-//     Motor1.reverseDirections();
-//     //OR
-//     Motor2.reverseDirections();
-// };
+namespace mtrCtrl{
 
-// void MotorControl::setMotorFunction(mtrCtrl::MTRFUNCTIONS function){
-//     switch (function){
-//         case mtrCtrl::MTRFUNCTIONS::COAST:
-//             Motor1.coast();
-//             Motor2.coast();
-//             break;
-//         case mtrCtrl::MTRFUNCTIONS::REVERSE:
-//             motor1.reverse();
-//             motor2.reverse();
-//             break;
-//         case mtrCtrl::MTRFUNCTIONS::FORWARD:
-//             Motor1.forward();
-//             Motor2.forward();        
-//             break;
-//         case mtrCtrl::MTRFUNCTIONS::BRAKE:
-//             Motor1.brake();
-//             Motor2.brake();
-//             break;
-//         case mtrCtrl::MTRFUNCTIONS::SPIN:
-//             Motor1.forward();
-//             motor2.reverse();
-//             wait_us(spinDuration_us);
-//             Motor1.coast();
-//             Motor2.coast();            
-//             break;
-//         default:
-//     }
-// };
+    MotorControl::MotorControl(void):
+        motor1F(),
+        motor2F()
+    {
+        //FIXME
+        motor1F.reverseDirections();
+        //OR
+        motor2F.reverseDirections();
+    };
 
-// void MotorControl::getMotorFunction(mtrCtrl::MTRFUNCTIONS &funcM1, mtrCtrl::MTRFUNCTIONS &funcM2){
-//     funcM1=Motor1.getFunction();
-//     funcM2=Motor2.getFunction();
-// };
+    void MotorControl::setMotorFunction(MTRFUNCTIONS function)
+    {
+        switch (function){
+            case COAST:
+                motor1F.coast();
+                motor2F.coast();
+                break;
+            case REVERSE:
+                motor1F.reverse();
+                motor2F.reverse();
+                break;
+            case FORWARD:
+                motor1F.forward();
+                motor2F.forward();        
+                break;
+            case BRAKE:
+                motor1F.brake();
+                motor2F.brake();
+                break;
+            case SPIN:
+                motor1F.forward();
+                motor2F.reverse();
+                wait_us(spinDuration_us);
+                motor1F.coast();
+                motor2F.coast();            
+                break;
+            default:
+        }
+    };
+
+    void MotorControl::getMotorFunction(MTRFUNCTIONS &funcM1, MTRFUNCTIONS &funcM2)
+    {
+        funcM1=motor1F.getFunction();
+        funcM2=motor2F.getFunction();
+    };
+
+} /*mtrCtrl*/    

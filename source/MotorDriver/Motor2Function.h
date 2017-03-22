@@ -5,7 +5,8 @@
 
 namespace mtrCtrl{
 
-    class Motor2Function {
+    class Motor2Function
+    {
         DigitalInOut P0;
         DigitalInOut P16;
         public:
@@ -16,11 +17,11 @@ namespace mtrCtrl{
             void forward(void);
             void reverse(void);
             void brake(void);
-            mtrCtrl::MTRFUNCTIONS getFunction(void);
+            MOTORFUNCTIONS getFunction(void);
         private:
             bool normalDirection;
-            void write(int valueP0, int valueP16);
-            void read(int &valueP0, int &valueP16);
+            void writeToPins(int valueP0, int valueP16);
+            void readFromPins(int &valueP0, int &valueP16);
     }
 
 } /*mtrCtrl*/
