@@ -4,7 +4,7 @@
 #include "source/Display/DisplayControl.h"
 #include "source/MotorDriver/MotorControl.h"
 
-#define MICROBIT_ID_TEST 1234
+#define MICROBIT_ID_TEST 4321
 #define MICROBIT_DISPLAY_EVT_UPDATE 1
 
 void displayUpdate(MicroBitEvent);
@@ -29,6 +29,7 @@ int main() {
     MicrobitEvent evt(MICROBIT_ID_TEST, MICROBIT_DISPLAY_EVT_UPDATE);//creates and sends
     fiber_sleep(3000);//ms 
 
+    /*DON'T JUMP OUT OF MAIN*/
     while(1){
         fiber_sleep(500);//ms        
     }

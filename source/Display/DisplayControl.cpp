@@ -40,6 +40,11 @@ namespace dsplCtrl{
         MicrobitEvent evt(MICROBIT_ID_TEST, MICROBIT_DISPLAY_EVT_UPDATE);
     };
 
+    void DisplayControl::updateGlobalDisplay(void)
+    {
+        display.print(displayImage);
+    };
+
     void DisplayControl::updateMotorsInfo(int funcM1, int funcM2)
     {
         updateImageWithMotorInfo(funcM1,motor1Col,motor1Row);

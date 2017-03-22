@@ -185,7 +185,7 @@ m1=1</panel_attributes>
   <element>
     <id>UMLInterface</id>
     <coordinates>
-      <x>810</x>
+      <x>792</x>
       <y>387</y>
       <w>72</w>
       <h>90</h>
@@ -275,15 +275,17 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>783</x>
-      <y>612</y>
+      <y>603</y>
       <w>108</w>
-      <h>63</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>DisplayControl
 --
 --
 +getDisplayImage()
-+updateMotorsInfo()
+??+updateMotorsInfo()
++updateMotor1Info()
++updateMotor2Info()
 +updateSonarInfo()
 </panel_attributes>
     <additional_attributes/>

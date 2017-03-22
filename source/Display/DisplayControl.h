@@ -26,6 +26,7 @@ namespace dsplCtrl{
         private:
             MicroBitImage displayImage;
             void sendMessageToUpdateDisplay(void);
+            void updateGlobalDisplay(void);
             void updateImageWithMotorInfo(int motorFunction, int col, int row);
     };
 
