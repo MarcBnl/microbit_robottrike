@@ -1,9 +1,10 @@
 #ifndef MOTOR1FUNCTION_H
 #define MOTOR1FUNCTION_H
 
-#include <DigitalInOut.h>
+#include "mbed.h"
+#include "DigitalInOut.h"
 
-namespace mtrCtrl{
+// namespace mtrCtrl{
 
     class Motor1Function 
     {
@@ -17,13 +18,13 @@ namespace mtrCtrl{
             void forward(void);
             void reverse(void);
             void brake(void);
-            MOTORFUNCTIONS getFunction(void);
+            int getFunction(void);
         private:
             bool normalDirection;
             void writeToPins(int valueP8, int valueP12);
             void readFromPins(int &valueP8, int &valueP12);
-    }
+    };
 
-} /*mtrCtrl*/
+// } /*mtrCtrl*/
 
 #endif /*MOTOR1FUNCTION_H*/

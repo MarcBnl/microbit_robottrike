@@ -3,7 +3,7 @@
 
 #include "MicroBit.h"
 
-namespace dsplCtrl{
+// namespace dsplCtrl{
 
     class DisplayControl 
     {
@@ -13,8 +13,8 @@ namespace dsplCtrl{
         static const int motor1Row=0;
         static const int motor2Col=4;
         static const int motor2Row=0; 
-        static const int sonarCol=3;
-        static const int sonarRow=1;      
+        static const int sonarCol=2;
+        static const int sonarRow=0;      
         public:
             DisplayControl(void);
             ~DisplayControl(void);
@@ -26,10 +26,9 @@ namespace dsplCtrl{
         private:
             MicroBitImage displayImage;
             void sendMessageToUpdateDisplay(void);
-            void updateGlobalDisplay(void);
             void updateImageWithMotorInfo(int motorFunction, int col, int row);
     };
 
-} /*dsplCtrl*/
+// } /*dsplCtrl*/
 
 #endif /*DISPLAYCONTROL_H*/

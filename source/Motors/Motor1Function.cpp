@@ -1,8 +1,10 @@
-// #include "Motor1Function.h"
+#include "MicroBit.h"
+#include "MicroBitEvent.h"
+#include "Motor1Function.h"
 
 // //https://docs.mbed.com/docs/mbed-drivers-api/en/latest/api/classmbed_1_1DigitalInOut.html
 
-namespace mtrCtrl{
+// namespace mtrCtrl{
 
     Motor1Function::Motor1Function(void):
         P8(MICROBIT_PIN_P8),
@@ -34,28 +36,28 @@ namespace mtrCtrl{
     void Motor1Function::coast(void)
     {
         writeToPins(0,0);
-        MicrobitEvent evt(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST);
+        MicroBitEvent evt(151,0);//MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST);
     };
 
     void Motor1Function::forward(void)
     {
         normalDirection==true?writeToPins(1,0):writeToPins(0,1);
-        MicrobitEvent evt(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD);
+        MicroBitEvent evt(151,2);//MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD);
     };
 
     void Motor1Function::reverse(void)
     {
-        normalDirection==true?writeToPins(0,1):writeToPinswrite(1,0);
-        MicrobitEvent evt(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE);
+        normalDirection==true?writeToPins(0,1):writeToPins(1,0);
+        MicroBitEvent evt(151,1);//MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE);
     };
 
     void Motor1Function::brake(void)
     {
         writeToPins(1,1);
-        MicrobitEvent evt(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE);
+        MicroBitEvent evt(151,3);//MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE);
     };
 
-    MOTORFUNCTIONS Motor1Function::getFunction(void)
+    int Motor1Function::getFunction(void)
     {
         int valueP8;
         int valueP12;
@@ -64,16 +66,17 @@ namespace mtrCtrl{
         normalDirection==true?motorValue=valueP8*2+valueP12*1:motorValue=valueP12*2+valueP8*1;
         switch (motorValue){
             case 0:
-                return COAST; break;
+                return 0; break;
             case 1:
-                return REVERSE; break;
+                return 1; break;
             case 2:
-                return FORWARD; break;
+                return 2; break;
             case 3:
-                return BRAKE; break;
+                return 3; break;
             default:
+                break;
         };
-        return COAST;
+        return 0;
     };
 
-} /*mtrCtrl*/
+// } /*mtrCtrl*/
