@@ -20,6 +20,28 @@ namespace dsplCtrl{
         updateDisplay();
     };
 
+    void DisplayControl::updateSonarInfo(int distancePercent)
+    {
+        static const uint8_t _100[]={1,1,1,1,1}; MicroBitImage _100Image(1,5,_100);
+        static const uint8_t  _75[]={0,1,1,1,1}; MicroBitImage _75Image(1,5,_75);
+        static const uint8_t  _50[]={0,0,1,1,1}; MicroBitImage _50Image(1,5,_50);
+        static const uint8_t  _25[]={0,0,0,1,1}; MicroBitImage _25Image(1,5,_25);
+        static const uint8_t  _20[]={0,0,0,0,1}; MicroBitImage _20Image(1,5,_20);
+        static const uint8_t   _0[]={0,0,0,0,0}; MicroBitImage _0Image(1,5,_0);
+        if (distancePercent<=20) 
+            displayImage.paste(_0Image,sonarCol,sonarRow)
+        else if (distancePercent<=25) 
+            displayImage.paste(_20Image,sonarCol,sonarRow)
+        else if (distancePercent<=50) 
+            displayImage.paste(_25Image,sonarCol,sonarRow)
+        else if (distancePercent<=75) 
+            displayImage.paste(_50Image,sonarCol,sonarRow)
+        else if (distancePercent<=100) 
+            displayImage.paste(_75Image,sonarCol,sonarRow)
+        else 
+            displayImage.paste(_100Image,sonarCol,sonarRow);
+    };
+
     void DisplayControl::updateImageWithMotorInfo(int funcM, int col, int row)
     {
         static const uint8_t   coast[]={0,0,1,0,0}; MicroBitImage coastImage(1,5,coast);

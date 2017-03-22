@@ -12,12 +12,15 @@ namespace dsplCtrl{
         static const int motor1Col=0;
         static const int motor1Row=0;
         static const int motor2Col=4;
-        static const int motor2Row=0;       
+        static const int motor2Row=0; 
+        static const int sonarCol=3;
+        static const int sonarRow=1;      
         public:
             DisplayControl(void);
             ~DisplayControl(void){};
             MicroBitImage getDisplayImage(void);
             void updateMotorsInfo(int funcM1,int funcM2);
+            void updateSonarInfo(int distancePercent);
         private:
             MicroBitImage displayImage;
             void updateImageWithMotorInfo(int funcM, int col, int row);
