@@ -35,11 +35,15 @@ namespace dsplCtrl{
         return displayImage;
     };
 
+    void DisplayControl::sendMessageToUpdateDisplay(void)
+    {
+        MicrobitEvent evt(MICROBIT_ID_TEST, MICROBIT_DISPLAY_EVT_UPDATE);
+    };
+
     void DisplayControl::updateMotorsInfo(int funcM1, int funcM2)
     {
         updateImageWithMotorInfo(funcM1,motor1Col,motor1Row);
         updateImageWithMotorInfo(funcM2,motor2Col,motor2Row);
-        updateDisplay();
     };
 
     void DisplayControl::updateMotor1Info(MicroBitEvent e)
@@ -86,6 +90,7 @@ namespace dsplCtrl{
             displayImage.paste(_75Image,sonarCol,sonarRow)
         else 
             displayImage.paste(_100Image,sonarCol,sonarRow);
+        sendMessageToUpdateDisplay();
     };
 
     void DisplayControl::updateImageWithMotorInfo(int motorFunction, int col, int row)
@@ -110,6 +115,7 @@ namespace dsplCtrl{
             default:
                 break;
         }
+        sendMessageToUpdateDisplay();
     };
 
 } /*dsplCtrl*/

@@ -20,9 +20,9 @@ int main() {
 
     msgBus.listen(MICROBIT_ID_TEST,MICROBIT_DISPLAY_EVT_UPDATE,displayUpdate);
     
-    displCtrl.updateMotorsInfo(MICROBIT_MOTOR_FUNCTION_EVT_FORWARD,mtrCtrl::MOTORFUNCTIONS.REVERSE);
-    displCtrl.updateSonarInfo(150);
-    display.print(displCtrl.getDisplayImage());
+    displCtrl.updateMotorsInfo(MICROBIT_MOTOR_FUNCTION_EVT_FORWARD,mtrCtrl::MOTORFUNCTIONS.REVERSE);//SHOULD DO DISPLAY UPDATE VIA MESSAGE
+    displCtrl.updateSonarInfo(150);//SHOULD DO DISPLAY UPDATE VIA MESSAGE
+    // display.print(displCtrl.getDisplayImage());
     fiber_sleep(3000);//ms 
 
     displCtrl.updateSonarInfo(15);

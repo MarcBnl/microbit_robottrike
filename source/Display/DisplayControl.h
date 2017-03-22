@@ -25,6 +25,7 @@ namespace dsplCtrl{
             void updateSonarInfo(int distancePercent);
         private:
             MicroBitImage displayImage;
+            void sendMessageToUpdateDisplay(void);
             void updateImageWithMotorInfo(int motorFunction, int col, int row);
     };
 
