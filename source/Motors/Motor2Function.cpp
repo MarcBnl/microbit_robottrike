@@ -1,15 +1,17 @@
-// #include "Motor2Function.h"
+#include "MicroBit.h"
+#include "MicroBitEvent.h"
+#include "Motor2Function.h"
 
 // //https://docs.mbed.com/docs/mbed-drivers-api/en/latest/api/classmbed_1_1DigitalInOut.html
 
-namespace mtrCtrl{
+// namespace mtrCtrl{
 
     Motor2Function::Motor2Function(void):
         P0(MICROBIT_PIN_P0),
         P16(MICROBIT_PIN_P16)
     {
-        P0.ouput();
-        P16.ouput();
+        P0.output();
+        P16.output();
         normalDirection=true;
         coast();
     };
@@ -34,46 +36,47 @@ namespace mtrCtrl{
     void Motor2Function::coast(void)
     {
         writeToPins(0,0);
-        MicrobitEvent evt(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST);
+        MicroBitEvent evt(152,0);//MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST);
     };
 
     void Motor2Function::forward(void)
     {
         normalDirection==true?writeToPins(1,0):writeToPins(0,1);
-        MicrobitEvent evt(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD);
+        MicroBitEvent evt(152,2);//MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD);
     };
 
     void Motor2Function::reverse(void)
     {
         normalDirection==true?writeToPins(0,1):writeToPins(1,0);
-        MicrobitEvent evt(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE);
+        MicroBitEvent evt(152,1);//MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE);
     };
 
     void Motor2Function::brake(void)
     {
         writeToPins(1,1);
-        MicrobitEvent evt(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE);
+        MicroBitEvent evt(152,3);//MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE);
     };
 
-    MOTORFUNCTIONS Motor2Function::getFunction(void)
+    int Motor2Function::getFunction(void)
     {
         int valueP0;
         int valueP16;
         readFromPins(valueP0,valueP16);
         int motorValue;
-        normalDirection==true?motorValue=valueP0*2+valuleP16*1:motorValue=valueP16*2+valueP0*1;
+        normalDirection==true?motorValue=valueP0*2+valueP16*1:motorValue=valueP16*2+valueP0*1;
         switch (motorValue){
             case 0:
-                return COAST; break;
+                return 0; break;
             case 1:
-                return REVERSE; break;
+                return 1; break;
             case 2:
-                return FORWARD; break;
+                return 2; break;
             case 3:
-                return BRAKE; break;
+                return 3; break;
             default:
+                break;
         };
-        return COAST;
+        return 0;
     };
 
-} /*mtrCtrl*/
+// } /*mtrCtrl*/

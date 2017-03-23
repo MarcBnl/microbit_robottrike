@@ -1,6 +1,6 @@
 #include "MotorControl.h"
 
-namespace mtrCtrl{
+// namespace mtrCtrl{
 
     MotorControl::MotorControl(void):
         motor1F(),
@@ -9,29 +9,29 @@ namespace mtrCtrl{
         //FIXME
         motor1F.reverseDirections();
         //OR
-        motor2F.reverseDirections();
+        //motor2F.reverseDirections();
     };
 
-    void MotorControl::setMotorFunction(MOTORFUNCTIONS function)
+    void MotorControl::setMotorFunction(int function)
     {
         switch (function){
-            case COAST:
+            case 0://COAST:
                 motor1F.coast();
                 motor2F.coast();
                 break;
-            case REVERSE:
+            case 1://REVERSE:
                 motor1F.reverse();
                 motor2F.reverse();
                 break;
-            case FORWARD:
+            case 2://FORWARD:
                 motor1F.forward();
                 motor2F.forward();
                 break;
-            case BRAKE:
+            case 3://BRAKE:
                 motor1F.brake();
                 motor2F.brake();
                 break;
-            case SPIN:
+            case 4://SPIN:
                 motor1F.forward();
                 motor2F.reverse();
                 wait_us(spinDuration_us);
@@ -39,13 +39,16 @@ namespace mtrCtrl{
                 motor2F.coast();
                 break;
             default:
+                motor1F.coast();
+                motor2F.coast();
+                break;
         }
     };
 
-    void MotorControl::getMotorFunction(MOTORFUNCTIONS &funcM1, MOTORFUNCTIONS &funcM2)
+    void MotorControl::getMotorFunction(int &funcM1, int &funcM2)
     {
         funcM1=motor1F.getFunction();
         funcM2=motor2F.getFunction();
     };
 
-} /*mtrCtrl*/    
+// } /*mtrCtrl*/    

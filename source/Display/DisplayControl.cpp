@@ -1,33 +1,42 @@
 #include "DisplayControl.h"
 
-namespace dsplCtrl{
+
+#define MICROBIT_ID_MOTOR1 151
+#define MICROBIT_ID_MOTOR2 152
+#define MICROBIT_MOTOR_FUNCTION_EVT_COAST   0
+#define MICROBIT_MOTOR_FUNCTION_EVT_REVERSE 1
+#define MICROBIT_MOTOR_FUNCTION_EVT_FORWARD 2
+#define MICROBIT_MOTOR_FUNCTION_EVT_BRAKE   3
+#define MICROBIT_MOTOR_FUNCTION_EVT_SPIN    4
+
+// namespace dsplCtrl{
 
     DisplayControl::DisplayControl(void):
         displayImage(colums,rows)
     {
         displayImage.clear();
-        //MicroBitMessageBus msgBus; SINCE IS A SYSTEM RUNTIME COMPONENT MUST BE A GLOBAL VARIABLE
-        msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
-        msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
-        msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
-        msgBus.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
-        msgBus.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
-        msgBus.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
-        msgBus.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
-        msgBus.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
+        MicroBitMessageBus msg;
+        msg.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
+        msg.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
+        msg.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
+        msg.listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
+        msg.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
+        msg.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
+        msg.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
+        msg.listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
     };
 
     DisplayControl::~DisplayControl(void)
     {
-        //MicroBitMessageBus msgBus; SINCE IS A SYSTEM RUNTIME COMPONENT MUST BE A GLOBAL VARIABLE
-        msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
-        msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
-        msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
-        msgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
-        msgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
-        msgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
-        msgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
-        msgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);        
+        MicroBitMessageBus msg;
+        msg.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
+        msg.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
+        msg.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
+        msg.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
+        msg.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
+        msg.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
+        msg.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
+        msg.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);        
     }
 
     MicroBitImage DisplayControl::getDisplayImage(void)
@@ -37,12 +46,7 @@ namespace dsplCtrl{
 
     void DisplayControl::sendMessageToUpdateDisplay(void)
     {
-        MicrobitEvent evt(MICROBIT_ID_TEST, MICROBIT_DISPLAY_EVT_UPDATE);
-    };
-
-    void DisplayControl::updateGlobalDisplay(void)
-    {
-        display.print(displayImage);
+        MicroBitEvent evt(4321,1);//MICROBIT_ID_TEST, MICROBIT_DISPLAY_EVT_UPDATE);
     };
 
     void DisplayControl::updateMotorsInfo(int funcM1, int funcM2)
@@ -53,26 +57,28 @@ namespace dsplCtrl{
 
     void DisplayControl::updateMotor1Info(MicroBitEvent e)
     {
-        if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_FORWARD)
-            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_FORWARD,motor1Col,motor1Row);
-        else if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_REVERSE)
-            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_REVERSE,motor1Col,motor1Row);
-        else if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_COAST) 
-            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_COAST,motor1Col,motor1Row);
-        else (e.value==MICROBIT_MOTOR_FUNCTION_EVT_BRAKE)
-            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_BRAKE,motor1Col,motor1Row);
+        if (e.value==2)//MICROBIT_MOTOR_FUNCTION_EVT_FORWARD)
+            updateImageWithMotorInfo(2,motor1Col,motor1Row);
+        else if (e.value==1)//MICROBIT_MOTOR_FUNCTION_EVT_REVERSE)
+            updateImageWithMotorInfo(1,motor1Col,motor1Row);
+        else if (e.value==0)//MICROBIT_MOTOR_FUNCTION_EVT_COAST) 
+            updateImageWithMotorInfo(0,motor1Col,motor1Row);
+        else if (e.value==3)//MICROBIT_MOTOR_FUNCTION_EVT_BRAKE)
+            updateImageWithMotorInfo(3,motor1Col,motor1Row);
+        else{};
     };
 
     void DisplayControl::updateMotor2Info(MicroBitEvent e)
     {
-        if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_FORWARD)
-            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_FORWARD,motor2Col,motor2Row);
-        else if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_REVERSE)
-            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_REVERSE,motor2Col,motor2Row);
-        else if (e.value==MICROBIT_MOTOR_FUNCTION_EVT_COAST) 
-            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_COAST,motor2Col,motor2Row);
-        else (e.value==MICROBIT_MOTOR_FUNCTION_EVT_BRAKE)
-            updateImageWithMotorInfo(MICROBIT_MOTOR_FUNCTION_EVT_BRAKE,motor2Col,motor2Row);
+        if (e.value==2)//MICROBIT_MOTOR_FUNCTION_EVT_FORWARD)
+            updateImageWithMotorInfo(2,motor2Col,motor2Row);
+        else if (e.value==1)//MICROBIT_MOTOR_FUNCTION_EVT_REVERSE)
+            updateImageWithMotorInfo(1,motor2Col,motor2Row);
+        else if (e.value==0)//MICROBIT_MOTOR_FUNCTION_EVT_COAST) 
+            updateImageWithMotorInfo(0,motor2Col,motor2Row);
+        else if (e.value==3)//MICROBIT_MOTOR_FUNCTION_EVT_BRAKE)
+            updateImageWithMotorInfo(3,motor2Col,motor2Row);
+        else{};
     };
 
     void DisplayControl::updateSonarInfo(int distancePercent)
@@ -84,15 +90,15 @@ namespace dsplCtrl{
         static const uint8_t  _20[]={0,0,0,0,1}; MicroBitImage _20Image(1,5,_20);
         static const uint8_t   _0[]={0,0,0,0,0}; MicroBitImage _0Image(1,5,_0);
         if (distancePercent<=20) 
-            displayImage.paste(_0Image,sonarCol,sonarRow)
+            displayImage.paste(_0Image,sonarCol,sonarRow);
         else if (distancePercent<=25) 
-            displayImage.paste(_20Image,sonarCol,sonarRow)
+            displayImage.paste(_20Image,sonarCol,sonarRow);
         else if (distancePercent<=50) 
-            displayImage.paste(_25Image,sonarCol,sonarRow)
+            displayImage.paste(_25Image,sonarCol,sonarRow);
         else if (distancePercent<=75) 
-            displayImage.paste(_50Image,sonarCol,sonarRow)
+            displayImage.paste(_50Image,sonarCol,sonarRow);
         else if (distancePercent<=100) 
-            displayImage.paste(_75Image,sonarCol,sonarRow)
+            displayImage.paste(_75Image,sonarCol,sonarRow);
         else 
             displayImage.paste(_100Image,sonarCol,sonarRow);
         sendMessageToUpdateDisplay();
@@ -109,13 +115,13 @@ namespace dsplCtrl{
         //USE THE ENUM MOTORFUNCTIONS FROM MOTORCONTROL
         MicroBitImage motorImage();
         switch (motorFunction){
-            case MICROBIT_MOTOR_FUNCTION_EVT_COAST:
+            case 0://MICROBIT_MOTOR_FUNCTION_EVT_COAST:
                 displayImage.paste(coastImage,col,row); break;
-            case MICROBIT_MOTOR_FUNCTION_EVT_REVERSE:
+            case 1://MICROBIT_MOTOR_FUNCTION_EVT_REVERSE:
                 displayImage.paste(reverseImage,col,row); break;
-            case MICROBIT_MOTOR_FUNCTION_EVT_FORWARD:
+            case 2://MICROBIT_MOTOR_FUNCTION_EVT_FORWARD:
                 displayImage.paste(forwardImage,col,row); break;
-            case MICROBIT_MOTOR_FUNCTION_EVT_BRAKE:
+            case 3://MICROBIT_MOTOR_FUNCTION_EVT_BRAKE:
                 displayImage.paste(brakeImage,col,row); break;
             default:
                 break;
@@ -123,4 +129,4 @@ namespace dsplCtrl{
         sendMessageToUpdateDisplay();
     };
 
-} /*dsplCtrl*/
+// } /*dsplCtrl*/
