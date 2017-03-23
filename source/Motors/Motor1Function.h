@@ -1,8 +1,11 @@
 #ifndef MOTOR1FUNCTION_H
 #define MOTOR1FUNCTION_H
 
+#include "MicroBit.h"
+#include "MicroBitEvent.h"
 #include "mbed.h"
 #include "DigitalInOut.h"
+#include "Defines.h"
 
 // namespace mtrCtrl{
 

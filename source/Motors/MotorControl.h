@@ -1,6 +1,7 @@
 #ifndef MOTORCONTROL_H
 #define MOTORCONTROL_H
 
+#include "Defines.h"
 #include "source/Motors/Motor1Function.h"
 #include "source/Motors/Motor2Function.h"
 
@@ -10,7 +11,7 @@
 
     class MotorControl 
     {
-        static const int spinDuration_us=10000;
+        static const int spinDuration_us=90000;
         Motor1Function motor1F;
         Motor2Function motor2F;
         public:
