@@ -61,6 +61,8 @@
 
     void DisplayControl::updateMotor1Info(MicroBitEvent e)
     {
+        //FIXME
+        //OR GET THE THE INFO FROM THE MOTOR CONTROLLER VIA GET        
         if (e.value==2)//MICROBIT_MOTOR_FUNCTION_EVT_FORWARD)
             updateImageWithMotorInfo(2,motor1Col,motor1Row);
         else if (e.value==1)//MICROBIT_MOTOR_FUNCTION_EVT_REVERSE)
@@ -74,6 +76,8 @@
 
     void DisplayControl::updateMotor2Info(MicroBitEvent e)
     {
+        //FIXME
+        //OR GET THE THE INFO FROM THE MOTOR CONTROLLER VIA GET
         if (e.value==2)//MICROBIT_MOTOR_FUNCTION_EVT_FORWARD)
             updateImageWithMotorInfo(2,motor2Col,motor2Row);
         else if (e.value==1)//MICROBIT_MOTOR_FUNCTION_EVT_REVERSE)
