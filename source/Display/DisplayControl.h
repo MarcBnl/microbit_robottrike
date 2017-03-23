@@ -17,21 +17,17 @@
         static const int sonarCol=2;
         static const int sonarRow=0;      
         public:
-            DisplayControl(void);
-            DisplayControl(MicroBitMessageBus *msgBus);
+            DisplayControl(MicroBitMessageBus *msgBus,MicroBitDisplay *display);
             ~DisplayControl(void);
-            MicroBitImage getDisplayImage(void);
-            void updateMotorsInfo(int funcM1,int funcM2);
-            // void updateMotor1Info(MicroBitEvent e);
-            // void updateMotor2Info(MicroBitEvent e);
-            void updateSonarInfo(int distancePercent);
         private:
             MicroBitMessageBus *ubitMsgBus;
+            MicroBitDisplay *ubitDisplay;
             MicroBitImage displayImage;
             void updateMotor1Info(MicroBitEvent e);
             void updateMotor2Info(MicroBitEvent e);            
-            void sendMessageToUpdateDisplay(void);
             void updateImageWithMotorInfo(int motorFunction, int col, int row);
+            void updateSonarInfo(MicroBitEvent e);
+            void updateImageWithSonarInfo(int distanceNr);
     };
 
 // } /*dsplCtrl*/

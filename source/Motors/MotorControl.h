@@ -11,7 +11,7 @@
 
     class MotorControl 
     {
-        static const int spinDuration_us=90000;
+        static const int spinDuration_us=990000;
         Motor1Function motor1F;
         Motor2Function motor2F;
         public:

@@ -9,54 +9,52 @@
 #define MICROBIT_MOTOR_FUNCTION_EVT_BRAKE   3
 #define MICROBIT_MOTOR_FUNCTION_EVT_SPIN    4
 
+
 // namespace dsplCtrl{
 
-    DisplayControl::DisplayControl(MicroBitMessageBus &msgBus)
+    DisplayControl::DisplayControl(MicroBitMessageBus *msgBus,MicroBitDisplay *display):
+        displayImage(colums,rows)
     {
+        displayImage.clear();
         ubitMsgBus=msgBus;
+        ubitDisplay=display;
+
         ubitMsgBus->listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
         ubitMsgBus->listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
         ubitMsgBus->listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
         ubitMsgBus->listen(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
+
         ubitMsgBus->listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor2Info);
         ubitMsgBus->listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor2Info);
         ubitMsgBus->listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor2Info);
         ubitMsgBus->listen(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor2Info);
-        DisplayControl();//constructor
-    };
 
-    DisplayControl::DisplayControl(void):
-        displayImage(colums,rows)
-    {
-        displayImage.clear();
+        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_0PRCNT, this, &DisplayControl::updateSonarInfo);
+        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_5PRCNT, this, &DisplayControl::updateSonarInfo);
+        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_25PRCNT, this, &DisplayControl::updateSonarInfo);
+        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_50PRCNT, this, &DisplayControl::updateSonarInfo);
+        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_75PRCNT, this, &DisplayControl::updateSonarInfo);
+        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_100PRCNT, this, &DisplayControl::updateSonarInfo);
     };
 
     DisplayControl::~DisplayControl(void)
     {
-        ubitMsgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
-        ubitMsgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
-        ubitMsgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
-        ubitMsgBus.ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
-        ubitMsgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor2Info);
-        ubitMsgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor2Info);
-        ubitMsgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor2Info);
-        ubitMsgBus.ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor2Info);        
-    }
+        ubitMsgBus->ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
+        ubitMsgBus->ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
+        ubitMsgBus->ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
+        ubitMsgBus->ignore(MICROBIT_ID_MOTOR1, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
 
-    MicroBitImage DisplayControl::getDisplayImage(void)
-    {
-        return displayImage;
-    };
+        ubitMsgBus->ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor2Info);
+        ubitMsgBus->ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor2Info);
+        ubitMsgBus->ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor2Info);
+        ubitMsgBus->ignore(MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor2Info); 
 
-    void DisplayControl::sendMessageToUpdateDisplay(void)
-    {
-        MicroBitEvent evt(4321,1);//MICROBIT_ID_TEST, MICROBIT_DISPLAY_EVT_UPDATE);
-    };
-
-    void DisplayControl::updateMotorsInfo(int funcM1, int funcM2)
-    {
-        updateImageWithMotorInfo(funcM1,motor1Col,motor1Row);
-        updateImageWithMotorInfo(funcM2,motor2Col,motor2Row);
+        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_0PRCNT, this, &DisplayControl::updateSonarInfo); 
+        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_5PRCNT, this, &DisplayControl::updateSonarInfo);
+        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_25PRCNT, this, &DisplayControl::updateSonarInfo);
+        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_50PRCNT, this, &DisplayControl::updateSonarInfo);
+        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_75PRCNT, this, &DisplayControl::updateSonarInfo);
+        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_100PRCNT, this, &DisplayControl::updateSonarInfo);      
     };
 
     void DisplayControl::updateMotor1Info(MicroBitEvent e)
@@ -76,8 +74,6 @@
 
     void DisplayControl::updateMotor2Info(MicroBitEvent e)
     {
-        //FIXME
-        //OR GET THE THE INFO FROM THE MOTOR CONTROLLER VIA GET
         if (e.value==2)//MICROBIT_MOTOR_FUNCTION_EVT_FORWARD)
             updateImageWithMotorInfo(2,motor2Col,motor2Row);
         else if (e.value==1)//MICROBIT_MOTOR_FUNCTION_EVT_REVERSE)
@@ -87,29 +83,6 @@
         else if (e.value==3)//MICROBIT_MOTOR_FUNCTION_EVT_BRAKE)
             updateImageWithMotorInfo(3,motor2Col,motor2Row);
         else{};
-    };
-
-    void DisplayControl::updateSonarInfo(int distancePercent)
-    {
-        static const uint8_t _100[]={1,1,1,1,1}; MicroBitImage _100Image(1,5,_100);
-        static const uint8_t  _75[]={0,1,1,1,1}; MicroBitImage _75Image(1,5,_75);
-        static const uint8_t  _50[]={0,0,1,1,1}; MicroBitImage _50Image(1,5,_50);
-        static const uint8_t  _25[]={0,0,0,1,1}; MicroBitImage _25Image(1,5,_25);
-        static const uint8_t  _20[]={0,0,0,0,1}; MicroBitImage _20Image(1,5,_20);
-        static const uint8_t   _0[]={0,0,0,0,0}; MicroBitImage _0Image(1,5,_0);
-        if (distancePercent<=20) 
-            displayImage.paste(_0Image,sonarCol,sonarRow);
-        else if (distancePercent<=25) 
-            displayImage.paste(_20Image,sonarCol,sonarRow);
-        else if (distancePercent<=50) 
-            displayImage.paste(_25Image,sonarCol,sonarRow);
-        else if (distancePercent<=75) 
-            displayImage.paste(_50Image,sonarCol,sonarRow);
-        else if (distancePercent<=100) 
-            displayImage.paste(_75Image,sonarCol,sonarRow);
-        else 
-            displayImage.paste(_100Image,sonarCol,sonarRow);
-        sendMessageToUpdateDisplay();
     };
 
     void DisplayControl::updateImageWithMotorInfo(int motorFunction, int col, int row)
@@ -134,7 +107,47 @@
             default:
                 break;
         }
-        sendMessageToUpdateDisplay();
+        ubitDisplay->printAsync(displayImage);
+    };
+
+    void DisplayControl::updateSonarInfo(MicroBitEvent e)
+    {
+        if (e.value==0)
+            updateImageWithSonarInfo(0);
+        else if (e.value==1)
+            updateImageWithSonarInfo(1);
+        else if (e.value==2)
+            updateImageWithSonarInfo(2);
+        else if (e.value==3)
+            updateImageWithSonarInfo(3);
+        else if (e.value==4)
+            updateImageWithSonarInfo(4);
+        else if (e.value==5)
+            updateImageWithSonarInfo(5);
+        else{};
+    };
+
+    void DisplayControl::updateImageWithSonarInfo(int distanceNr)
+    {
+        static const uint8_t _100[]={1,1,1,1,1}; MicroBitImage _100Image(1,5,_100);
+        static const uint8_t  _75[]={0,1,1,1,1}; MicroBitImage _75Image(1,5,_75);
+        static const uint8_t  _50[]={0,0,1,1,1}; MicroBitImage _50Image(1,5,_50);
+        static const uint8_t  _25[]={0,0,0,1,1}; MicroBitImage _25Image(1,5,_25);
+        static const uint8_t   _5[]={0,0,0,0,1}; MicroBitImage _5Image(1,5,_5);
+        static const uint8_t   _0[]={0,0,0,0,0}; MicroBitImage _0Image(1,5,_0);
+        if (distanceNr==0) 
+            displayImage.paste(_0Image,sonarCol,sonarRow);
+        else if (distanceNr==1) 
+            displayImage.paste(_5Image,sonarCol,sonarRow);
+        else if (distanceNr==2) 
+            displayImage.paste(_25Image,sonarCol,sonarRow);
+        else if (distanceNr==3) 
+            displayImage.paste(_50Image,sonarCol,sonarRow);
+        else if (distanceNr==4) 
+            displayImage.paste(_75Image,sonarCol,sonarRow);
+        else 
+            displayImage.paste(_100Image,sonarCol,sonarRow);
+        ubitDisplay->printAsync(displayImage);
     };
 
 // } /*dsplCtrl*/
