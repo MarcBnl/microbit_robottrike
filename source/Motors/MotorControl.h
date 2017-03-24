@@ -7,8 +7,6 @@
 
 // namespace mtrCtrl{
 
-    // enum MOTORFUNCTIONS {COAST=0,REVERSE=1,FORWARD=2,BRAKE=3,SPIN=4};
-
     class MotorControl 
     {
         static const int spinDuration_us=940000;

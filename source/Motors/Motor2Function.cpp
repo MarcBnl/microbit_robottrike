@@ -1,5 +1,3 @@
-// #include "MicroBit.h"
-// #include "MicroBitEvent.h"
 #include "Motor2Function.h"
 
 // //https://docs.mbed.com/docs/mbed-drivers-api/en/latest/api/classmbed_1_1DigitalInOut.html
@@ -42,7 +40,7 @@
     void Motor2Function::forward(void)
     {
         normalDirection==true?writeToPins(1,0):writeToPins(0,1);
-        MicroBitEvent evt(1MOTOR2_ID52,MOTOR_FUNCTION_EVT_FORWARD);
+        MicroBitEvent evt(MOTOR2_ID,MOTOR_FUNCTION_EVT_FORWARD);
     };
 
     void Motor2Function::reverse(void)
@@ -65,19 +63,6 @@
         int motorFunction;
         normalDirection==true?motorFunction=valueP0*2+valueP16*1:motorFunction=valueP16*2+valueP0*1;
         return motorFunction;
-        // switch (motorValue){
-        //     case 0:
-        //         return 0; break;
-        //     case 1:
-        //         return 1; break;
-        //     case 2:
-        //         return 2; break;
-        //     case 3:
-        //         return 3; break;
-        //     default:
-        //         break;
-        // };
-        // return 0;
     };
 
 // } /*mtrCtrl*/

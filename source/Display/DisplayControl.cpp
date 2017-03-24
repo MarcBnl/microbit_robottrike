@@ -1,14 +1,5 @@
 #include "DisplayControl.h"
 
-// #define MICROBIT_ID_MOTOR1 151
-// #define MICROBIT_ID_MOTOR2 152
-// #define MICROBIT_MOTOR_FUNCTION_EVT_COAST   0
-// #define MICROBIT_MOTOR_FUNCTION_EVT_REVERSE 1
-// #define MICROBIT_MOTOR_FUNCTION_EVT_FORWARD 2
-// #define MICROBIT_MOTOR_FUNCTION_EVT_BRAKE   3
-// #define MICROBIT_MOTOR_FUNCTION_EVT_SPIN    4
-
-
 // namespace dsplCtrl{
 
     DisplayControl::DisplayControl(MicroBitMessageBus *msgBus,MicroBitDisplay *display):
@@ -59,29 +50,11 @@
     void DisplayControl::updateMotor1Info(MicroBitEvent e)
     {
         updateImageWithMotorInfo(e.value,motor1Col,motor1Row);
-        // if (e.value==2)
-        //     updateImageWithMotorInfo(2,motor1Col,motor1Row);
-        // else if (e.value==1)
-        //     updateImageWithMotorInfo(1,motor1Col,motor1Row);
-        // else if (e.value==0)
-        //     updateImageWithMotorInfo(0,motor1Col,motor1Row);
-        // else if (e.value==3)
-        //     updateImageWithMotorInfo(3,motor1Col,motor1Row);
-        // else{};
     };
 
     void DisplayControl::updateMotor2Info(MicroBitEvent e)
     {
         updateImageWithMotorInfo(e.value,motor2Col,motor2Row);
-        // if (e.value==2)
-        //     updateImageWithMotorInfo(2,motor2Col,motor2Row);
-        // else if (e.value==1)
-        //     updateImageWithMotorInfo(1,motor2Col,motor2Row);
-        // else if (e.value==0)
-        //     updateImageWithMotorInfo(0,motor2Col,motor2Row);
-        // else if (e.value==3)
-        //     updateImageWithMotorInfo(3,motor2Col,motor2Row);
-        // else{};
     };
 
     void DisplayControl::updateImageWithMotorInfo(int motorFunction, int col, int row)
@@ -112,19 +85,6 @@
     void DisplayControl::updateSonarInfo(MicroBitEvent e)
     {
         updateImageWithSonarInfo(e.value);
-        // if (e.value==0)
-        //     updateImageWithSonarInfo(0);
-        // else if (e.value==1)
-        //     updateImageWithSonarInfo(1);
-        // else if (e.value==2)
-        //     updateImageWithSonarInfo(2);
-        // else if (e.value==3)
-        //     updateImageWithSonarInfo(3);
-        // else if (e.value==4)
-        //     updateImageWithSonarInfo(4);
-        // else if (e.value==5)
-        //     updateImageWithSonarInfo(5);
-        // else{};
     };
 
     void DisplayControl::updateImageWithSonarInfo(int distanceNr)

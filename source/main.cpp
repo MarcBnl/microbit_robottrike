@@ -8,17 +8,8 @@
 #include "source/Motors/MotorControl.h"
 
 
-// #define MICROBIT_ID_MOTOR1 151
-// #define MICROBIT_ID_MOTOR2 152
-// #define MICROBIT_MOTOR_FUNCTION_EVT_COAST   0
-// #define MICROBIT_MOTOR_FUNCTION_EVT_REVERSE 1
-// #define MICROBIT_MOTOR_FUNCTION_EVT_FORWARD 2
-// #define MICROBIT_MOTOR_FUNCTION_EVT_BRAKE   3
-
-// void displayUpdate(MicroBitEvent);
-
 InterruptIn buttonA(MICROBIT_PIN_BUTTON_A);
-DigitalOut led(MICROBIT_PIN_P1);
+DigitalInOut led(MICROBIT_PIN_P2);
 void flipLed(void){
     led.write(!led.read());
 };
@@ -53,10 +44,9 @@ int main() {
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
 
     /*InterruptIn trail*/
-    buttonA.rise(&flipLed)
+    buttonA.rise(&flipLed);
     led.output();
     led.write(1);
-
 
     /*DON'T JUMP OUT OF MAIN*/
     while(1){

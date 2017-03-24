@@ -1,5 +1,3 @@
-// #include "MicroBit.h"
-// #include "MicroBitEvent.h"
 #include "Motor1Function.h"
 
 // //https://docs.mbed.com/docs/mbed-drivers-api/en/latest/api/classmbed_1_1DigitalInOut.html
