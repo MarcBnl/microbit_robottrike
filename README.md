@@ -16,10 +16,15 @@ http://yottadocs.mbed.com/reference/cheatsheet.html
 
 # Micro:Bit info
 https://lancaster-university.github.io/microbit-docs/
+https://developer.mbed.org/teams/Lancaster-University/code/microbit-dal/file/ee44932401cb/inc/drivers/MicroBitPin.h
+
 
 # -----------------------------------------------------------
 
 # ARM mbed
 https://www.mbed.com/en/
+https://docs.mbed.com/docs/mbed-os-api-reference/en/latest/
+https://developer.mbed.org/handbook/Ticker
+https://developer.mbed.org/handbook/InterruptIn
 # ARM examples
 https://developer.mbed.org/users/isaeldiaz/code/MicrobitUltrasound/

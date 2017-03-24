@@ -1,6 +1,7 @@
 #include "MicroBit.h"
 #include "MicroBitEvent.h"
 #include "DigitalInOut.h"
+#include "mbed.h"
 
 #include "Defines.h"
 #include "source/Display/DisplayControl.h"
@@ -14,7 +15,13 @@
 // #define MICROBIT_MOTOR_FUNCTION_EVT_FORWARD 2
 // #define MICROBIT_MOTOR_FUNCTION_EVT_BRAKE   3
 
-void displayUpdate(MicroBitEvent);
+// void displayUpdate(MicroBitEvent);
+
+InterruptIn buttonA(MICROBIT_PIN_BUTTON_A);
+DigitalOut led(MICROBIT_PIN_P1);
+void flipLed(void){
+    led.write(!led.read());
+};
 
 /*GLOBAL RUNTIME COMPONENTS*/
 MicroBitMessageBus msgBus;
@@ -44,6 +51,12 @@ int main() {
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
+
+    /*InterruptIn trail*/
+    buttonA.rise(&flipLed)
+    led.output();
+    led.write(1);
+
 
     /*DON'T JUMP OUT OF MAIN*/
     while(1){
