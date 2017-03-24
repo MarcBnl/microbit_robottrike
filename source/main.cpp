@@ -39,11 +39,11 @@ int main() {
     // fiber_sleep(3000);//ms 
 
     MotorControl mtrCtrl;
-    mtrCtrl.setMotorFunction(2);fiber_sleep(1000);//ms
-    mtrCtrl.setMotorFunction(0);fiber_sleep(1000);//ms
-    mtrCtrl.setMotorFunction(1);fiber_sleep(1000);//ms
-    mtrCtrl.setMotorFunction(0);fiber_sleep(1000);//ms
-    mtrCtrl.setMotorFunction(4);
+    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
+    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
+    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
+    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
+    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
 
     /*DON'T JUMP OUT OF MAIN*/
     while(1){
