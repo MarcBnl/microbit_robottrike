@@ -36,25 +36,25 @@
     void Motor2Function::coast(void)
     {
         writeToPins(0,0);
-        MicroBitEvent evt(152,0);//MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_COAST);
+        MicroBitEvent evt(MOTOR2_ID,MOTOR_FUNCTION_EVT_COAST);
     };
 
     void Motor2Function::forward(void)
     {
         normalDirection==true?writeToPins(1,0):writeToPins(0,1);
-        MicroBitEvent evt(152,2);//MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_FORWARD);
+        MicroBitEvent evt(1MOTOR2_ID52,MOTOR_FUNCTION_EVT_FORWARD);
     };
 
     void Motor2Function::reverse(void)
     {
         normalDirection==true?writeToPins(0,1):writeToPins(1,0);
-        MicroBitEvent evt(152,1);//MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_REVERSE);
+        MicroBitEvent evt(MOTOR2_ID,MOTOR_FUNCTION_EVT_REVERSE);
     };
 
     void Motor2Function::brake(void)
     {
         writeToPins(1,1);
-        MicroBitEvent evt(152,3);//MICROBIT_ID_MOTOR2, MICROBIT_MOTOR_FUNCTION_EVT_BRAKE);
+        MicroBitEvent evt(MOTOR2_ID,MOTOR_FUNCTION_EVT_BRAKE);
     };
 
     int Motor2Function::getFunction(void)
@@ -62,21 +62,22 @@
         int valueP0;
         int valueP16;
         readFromPins(valueP0,valueP16);
-        int motorValue;
-        normalDirection==true?motorValue=valueP0*2+valueP16*1:motorValue=valueP16*2+valueP0*1;
-        switch (motorValue){
-            case 0:
-                return 0; break;
-            case 1:
-                return 1; break;
-            case 2:
-                return 2; break;
-            case 3:
-                return 3; break;
-            default:
-                break;
-        };
-        return 0;
+        int motorFunction;
+        normalDirection==true?motorFunction=valueP0*2+valueP16*1:motorFunction=valueP16*2+valueP0*1;
+        return motorFunction;
+        // switch (motorValue){
+        //     case 0:
+        //         return 0; break;
+        //     case 1:
+        //         return 1; break;
+        //     case 2:
+        //         return 2; break;
+        //     case 3:
+        //         return 3; break;
+        //     default:
+        //         break;
+        // };
+        // return 0;
     };
 
 // } /*mtrCtrl*/

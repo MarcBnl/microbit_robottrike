@@ -15,23 +15,23 @@
     void MotorControl::setMotorFunction(int function)
     {
         switch (function){
-            case 0://COAST:
+            case MOTOR_FUNCTION_EVT_COAST:
                 motor1F.coast();
                 motor2F.coast();
                 break;
-            case 1://REVERSE:
+            case MOTOR_FUNCTION_EVT_REVERSE:
                 motor1F.reverse();
                 motor2F.reverse();
                 break;
-            case 2://FORWARD:
+            case MOTOR_FUNCTION_EVT_FORWARD:
                 motor1F.forward();
                 motor2F.forward();
                 break;
-            case 3://BRAKE:
+            case MOTOR_FUNCTION_EVT_BRAKE:
                 motor1F.brake();
                 motor2F.brake();
                 break;
-            case 4://SPIN:
+            case MOTOR_FUNCTION_EVT_SPIN:
                 motor1F.forward();
                 motor2F.reverse();
                 wait_us(spinDuration_us);
