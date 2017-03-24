@@ -6,7 +6,7 @@
 #include "Defines.h"
 #include "source/Display/DisplayControl.h"
 #include "source/Motors/MotorControl.h"
-
+#include "source/Motors/SonarControl.h"
 
 InterruptIn buttonA(MICROBIT_PIN_BUTTON_A);
 DigitalInOut led(MICROBIT_PIN_P2);
