@@ -38,6 +38,20 @@
                 motor1F.coast();
                 motor2F.coast();
                 break;
+            case MOTOR_FUNCTION_EVT_TURNBACKRIGHT:
+                motor1F.brake();
+                motor2F.reverse();
+                wait_us(turnDuration_us);
+                motor1F.coast();
+                motor2F.coast();
+                break;
+            case MOTOR_FUNCTION_EVT_TURNBACKLEFT:
+                motor1F.reverse();
+                motor2F.brake();
+                wait_us(turnDuration_us);
+                motor1F.coast();
+                motor2F.coast();
+                break;
             default:
                 motor1F.coast();
                 motor2F.coast();

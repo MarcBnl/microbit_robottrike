@@ -6,13 +6,13 @@
 #include "Defines.h"
 #include "source/Display/DisplayControl.h"
 #include "source/Motors/MotorControl.h"
-#include "source/Motors/SonarControl.h"
+#include "source/Sonar/SonarControl.h"
 
-InterruptIn buttonA(MICROBIT_PIN_BUTTON_A);
-DigitalInOut led(MICROBIT_PIN_P2);
-void flipLed(void){
-    led.write(!led.read());
-};
+// InterruptIn buttonA(MICROBIT_PIN_BUTTON_A);
+// DigitalInOut led(MICROBIT_PIN_P1);
+// void flipLed(void){
+//     led.write(!led.read());
+// };
 
 /*GLOBAL RUNTIME COMPONENTS*/
 MicroBitMessageBus msgBus;
@@ -21,6 +21,10 @@ MicroBitDisplay display;
 DisplayControl displCtrl(&msgBus,&display);
 
 int main() {
+    // buttonA.rise(&flipLed);
+    // led.output();
+    // led.write(1);
+
     display.scroll("321");    
 
     // displCtrl.updateSonarInfo(150);fiber_sleep(1000);//ms 
@@ -36,21 +40,21 @@ int main() {
     // MicroBitEvent evt(MICROBIT_ID_TEST, MICROBIT_DISPLAY_EVT_UPDATE);
     // fiber_sleep(3000);//ms 
 
+    SonarControl snrCtrl;
+
     MotorControl mtrCtrl;
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
+    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKRIGHT);
+    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKLEFT);
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
-
-    /*InterruptIn trail*/
-    buttonA.rise(&flipLed);
-    led.output();
-    led.write(1);
 
     /*DON'T JUMP OUT OF MAIN*/
     while(1){
-        fiber_sleep(500);//ms        
+        fiber_sleep(500);//ms   
+        // flipLed();     
     }
 	release_fiber();
 }
