@@ -8,8 +8,9 @@
         trigger.output();
         trigger.write(0);
 
-        int result=fiber_add_idle_component(this);
-        if (result==MICROBIT_OK)sendSerial("MICROBIT_OK:fiber_add_idle_component");
+        // int result=fiber_add_idle_component(this);
+        // if (result==MICROBIT_OK)sendSerial("MICROBIT_OK:fiber_add_idle_component");
+        // if (result==MICROBIT_NO_RESOURCES)sendSerial("MICROBIT_NO_RESOURCES:fiber_add_idle_component");
     };
 
     void Sonar::idleTick(void)
@@ -17,10 +18,15 @@
         sendSerial("Sonar::idleTick");
     };
 
+    void Sonar::systemTick(void)
+    {
+        // sendSerial("Sonar::systemTick");
+    };
+
     Sonar::~Sonar(void)
     {
         sendSerial("Sonar::~Sonar");
-        fiber_remove_idle_component(this);
+        // fiber_remove_idle_component(this);
     };
 
     void Sonar::fireTrigger(void)

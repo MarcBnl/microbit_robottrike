@@ -6,6 +6,7 @@
 #include "TimedInterruptIn.h"
 #include "MicroBitEvent.h"
 #include "MicroBitSerial.h"
+#include "MicroBitConfig.h"
 #include "mbed.h"
 
     class Sonar : public MicroBitComponent
@@ -19,9 +20,11 @@
             Sonar(void);
             ~Sonar(void);
             virtual void idleTick(void);
+            virtual void systemTick(void);
             void fireTrigger(void);
-        private:
             void sendSerial(const char* test);
+        private:
+            
     };
 
 #endif /*SONAR_H*/

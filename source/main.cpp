@@ -7,6 +7,7 @@
 #include "source/Display/DisplayControl.h"
 #include "source/Motors/MotorControl.h"
 #include "source/Sonar/SonarControl.h"
+#include "source/Sonar/Sonar.h"
 
 // InterruptIn buttonA(MICROBIT_PIN_BUTTON_A);
 // DigitalInOut led(MICROBIT_PIN_P1);
@@ -19,13 +20,14 @@ MicroBitMessageBus msgBus;
 MicroBitDisplay display;
 /*GLOBAL OBJECTS*/
 DisplayControl displCtrl(&msgBus,&display);
+SonarControl snrCtrl;
 
 int main() {
     // buttonA.rise(&flipLed);
     // led.output();
     // led.write(1);
 
-    display.scroll("321");    
+    display.scroll("321");   
 
     // displCtrl.updateSonarInfo(150);fiber_sleep(1000);//ms 
     // displCtrl.updateSonarInfo(80);fiber_sleep(1000);//ms
@@ -40,7 +42,15 @@ int main() {
     // MicroBitEvent evt(MICROBIT_ID_TEST, MICROBIT_DISPLAY_EVT_UPDATE);
     // fiber_sleep(3000);//ms 
 
-    SonarControl snrCtrl;
+
+                // Sonar* mySonar=new Sonar();
+                // //int result=fiber_add_idle_component(mySonar);
+                // int result=system_timer_add_component(mySonar);
+                // if (result==MICROBIT_OK)mySonar->sendSerial("MICROBIT_OK:fiber_add_idle_component");
+                // if (result==MICROBIT_NO_RESOURCES)mySonar->sendSerial("MICROBIT_NO_RESOURCES:fiber_add_idle_component");
+                // mySonar->fireTrigger();
+                // system_timer_remove_component(mySonar);
+
 
     MotorControl mtrCtrl;
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms

@@ -5,7 +5,7 @@ HC-SR04 sonar sensor: https://docs.google.com/document/d/1Y-yZnNhMYy7rwhAgyL_pfa
 
 # -----------------------------------------------------------
 
-# Creating mbed OS applications with yotta:
+# Yotta creating mbed OS applications:
 https://docs.mbed.com/docs/getting-started-mbed-os/en/latest/Full_Guide/app_on_yotta/#writing-applications-for-mbed-os
 # Testing With yotta:
 http://yottadocs.mbed.com/tutorial/testing.html
@@ -15,6 +15,7 @@ http://yottadocs.mbed.com/reference/cheatsheet.html
 # -----------------------------------------------------------
 
 # Micro:Bit info
+https://github.com/lancaster-university/microbit-dal
 https://lancaster-university.github.io/microbit-docs/
 https://developer.mbed.org/teams/Lancaster-University/code/microbit-dal/file/ee44932401cb/inc/drivers/MicroBitPin.h
 https://developer.mbed.org/teams/Lancaster-University/code/microbit-dal/docs/tip/
