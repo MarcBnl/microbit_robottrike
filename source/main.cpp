@@ -43,15 +43,6 @@ int main() {
     // fiber_sleep(3000);//ms 
 
 
-                // Sonar* mySonar=new Sonar();
-                // //int result=fiber_add_idle_component(mySonar);
-                // int result=system_timer_add_component(mySonar);
-                // if (result==MICROBIT_OK)mySonar->sendSerial("MICROBIT_OK:fiber_add_idle_component");
-                // if (result==MICROBIT_NO_RESOURCES)mySonar->sendSerial("MICROBIT_NO_RESOURCES:fiber_add_idle_component");
-                // mySonar->fireTrigger();
-                // system_timer_remove_component(mySonar);
-
-
     MotorControl mtrCtrl;
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms

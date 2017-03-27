@@ -4,14 +4,15 @@
 #include "MicroBit.h"
 #include "MicroBitComponent.h"
 #include "TimedInterruptIn.h"
-#include "MicroBitEvent.h"
 #include "MicroBitSerial.h"
-#include "MicroBitConfig.h"
 #include "mbed.h"
+
+#define SONAR_PING_ACTIVE 0x1
+#define SONAR_PING_FIRE   0x2
 
     class Sonar : public MicroBitComponent
     {
-        static const bool debugOn=true;
+        static const bool isDebugOn=true;
         static const int triggerDuration_us=2000000;//12;
         static const int triggerPeriod_ms=5000;//100;
         DigitalInOut trigger;
@@ -24,7 +25,9 @@
             void fireTrigger(void);
             void sendSerial(const char* test);
         private:
-            
+            unsigned int status;
+            unsigned int nextPingTime;//system_timer_current_time()
+
     };
 
 #endif /*SONAR_H*/
