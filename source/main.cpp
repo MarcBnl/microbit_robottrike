@@ -44,13 +44,13 @@ int main() {
 
 
     MotorControl mtrCtrl;
-    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
+    // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
-    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
-    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
-    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKRIGHT);
-    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKLEFT);
-    mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
+    // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
+    // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
+    // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKRIGHT);
+    // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKLEFT);
+    // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
 
     /*DON'T JUMP OUT OF MAIN*/
     while(1){

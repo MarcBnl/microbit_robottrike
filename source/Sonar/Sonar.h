@@ -7,6 +7,7 @@
 #include "MicroBitSystemTimer.h"
 #include "TimedInterruptIn.h"
 #include "mbed.h"
+#include "Defines.h"
 
 #define SONAR_COMPONENT_RUNNING 0x1
 #define SONAR_EVT_ECHO_RISE 1
@@ -15,10 +16,8 @@
     class Sonar : public MicroBitComponent
     {
         static const bool isDebugOn=true;
-        static const int triggerDuration_us=2000000;//12;
-        static const uint64_t triggerPeriod_ms=5000;//100;
-        static const double speedOfSoundInAir_mps=331.2;//meters per sec
-        static const double maxSonarRange_cm=400;
+        static const int triggerDuration_us=12;//500000;//12;
+        static const uint64_t triggerPeriod_ms=500;//200;//1000;//100;
         DigitalInOut trigger;
         TimedInterruptIn echo;//InterruptIn echo;
         public:
@@ -26,8 +25,10 @@
             ~Sonar(void);
             virtual void idleTick(void){ sendSerial("Sonar::idleTick");};
             virtual void systemTick(void);
-            double distance_cm;
+            float distance_cm;
         private:
+            const float speedOfSoundInAir_mps=331.2;//meters per sec
+            const float maxSonarRange_cm=400;
             unsigned int status;
             unsigned int nextTriggerTime;
             int systemTimerAddComponent(void);
@@ -38,7 +39,9 @@
             bool isNewTriggerNeeded(void);
             void newTrigger(void);
             void sendEvent(void);
-            void sendSerial(const char* test);
+            void sendSerial(const char* text);
+            void sendSerial(const int number);
+            void sendSerial(const float value);
     };
 
 #endif /*SONAR_H*/
