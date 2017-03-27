@@ -14,6 +14,7 @@
 #define MOTOR_FUNCTION_EVT_TURNBACKLEFT   6
 
 #define SONAR_ID                    1601
+#define SONAR_EVT_PING             -1
 #define SONAR_EVT_0PRCNT            0
 #define SONAR_EVT_5PRCNT            1
 #define SONAR_EVT_25PRCNT           2

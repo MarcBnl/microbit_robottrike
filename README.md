@@ -27,6 +27,26 @@ https://developer.mbed.org/teams/Lancaster-University/code/microbit-dal/docs/eb9
 https://www.mbed.com/en/
 https://docs.mbed.com/docs/mbed-os-api-reference/en/latest/
 https://developer.mbed.org/handbook/Ticker
+https://docs.mbed.com/docs/mbed-os-api/en/mbed-os-5.1.0/api/classmbed_1_1DigitalInOut.html
 https://developer.mbed.org/handbook/InterruptIn
 # ARM examples
 https://developer.mbed.org/users/isaeldiaz/code/MicrobitUltrasound/
+
+
+# -----------------------------------------------------------
+
+unsigned int status=0;
+unsigned int PING_SEND_NEW=0x2; //#define
+unsigned int PING_ONGOING=0x4; //#define
+unsigned int ECHO_HIGH=0x8; //#define
+unsigned int ECHO_LOW=0x10; //#define
+cout << "status=" << status << endl;  //status=0
+status |= PING_SEND_NEW;
+cout << "status=" << status << endl;  //status=2
+status |= PING_ONGOING;
+cout << "status=" << status << endl;  //status=6
+cout << "~PING_ONGOING=" << (~PING_ONGOING) << endl;  //~PING_ONGOING=4294967291
+status &= ~PING_ONGOING;
+cout << "status=" << status << endl;  //status=2
+if (status & PING_SEND_NEW) cout << "PING_SEND_NEW" << endl; //PING_SEND_NEW
+if (status & PING_ONGOING) cout << "PING_ONGOING" << endl;   //<nothing printed>

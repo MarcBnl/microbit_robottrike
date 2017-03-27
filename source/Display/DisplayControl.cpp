@@ -19,6 +19,7 @@
         ubitMsgBus->listen(MOTOR2_ID, MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor2Info);
         ubitMsgBus->listen(MOTOR2_ID, MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor2Info);
 
+        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_PING, this, &DisplayControl::updateSonarInfo);
         ubitMsgBus->listen(SONAR_ID, SONAR_EVT_0PRCNT, this, &DisplayControl::updateSonarInfo);
         ubitMsgBus->listen(SONAR_ID, SONAR_EVT_5PRCNT, this, &DisplayControl::updateSonarInfo);
         ubitMsgBus->listen(SONAR_ID, SONAR_EVT_25PRCNT, this, &DisplayControl::updateSonarInfo);
@@ -39,6 +40,7 @@
         ubitMsgBus->ignore(MOTOR2_ID, MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor2Info);
         ubitMsgBus->ignore(MOTOR2_ID, MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor2Info); 
 
+        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_PING, this, &DisplayControl::updateSonarInfo);
         ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_0PRCNT, this, &DisplayControl::updateSonarInfo); 
         ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_5PRCNT, this, &DisplayControl::updateSonarInfo);
         ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_25PRCNT, this, &DisplayControl::updateSonarInfo);
