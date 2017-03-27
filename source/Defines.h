@@ -16,10 +16,10 @@
 #define SONAR_ID                    1601
 #define SONAR_EVT_PING             -1
 #define SONAR_EVT_0PRCNT            0
-#define SONAR_EVT_5PRCNT            1
-#define SONAR_EVT_25PRCNT           2
-#define SONAR_EVT_50PRCNT           3
-#define SONAR_EVT_75PRCNT           4
-#define SONAR_EVT_100PRCNT          5
+#define SONAR_EVT_5PRCNT            5
+#define SONAR_EVT_25PRCNT           25
+#define SONAR_EVT_50PRCNT           50
+#define SONAR_EVT_75PRCNT           75
+#define SONAR_EVT_100PRCNT          100
 
 #endif /*DEFINES_H*/

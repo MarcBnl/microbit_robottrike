@@ -29,6 +29,7 @@ https://docs.mbed.com/docs/mbed-os-api-reference/en/latest/
 https://developer.mbed.org/handbook/Ticker
 https://docs.mbed.com/docs/mbed-os-api/en/mbed-os-5.1.0/api/classmbed_1_1DigitalInOut.html
 https://developer.mbed.org/handbook/InterruptIn
+https://developer.mbed.org/teams/Lancaster-University/code/microbit-dal/docs/eb91bba49623/TimedInterruptIn_8h_source.html
 # ARM examples
 https://developer.mbed.org/users/isaeldiaz/code/MicrobitUltrasound/
 
