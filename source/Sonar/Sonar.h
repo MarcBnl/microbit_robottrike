@@ -16,10 +16,11 @@
     class Sonar : public MicroBitComponent
     {
         static const bool isDebugOn=true;
-        static const int triggerDuration_us=12;//500000;//12;
-        static const uint64_t triggerPeriod_ms=500;//200;//1000;//100;
+        static const int triggerDuration_us=12;
+        static const uint64_t triggerPeriod_ms=500; 
+        static const uint64_t echoTimeMax_us=25000; //NOT less than 25ms (~400cm)
         DigitalInOut trigger;
-        TimedInterruptIn echo;//InterruptIn echo;
+        TimedInterruptIn echo;
         public:
             Sonar(void);
             ~Sonar(void);

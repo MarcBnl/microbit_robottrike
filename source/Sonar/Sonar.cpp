@@ -33,18 +33,20 @@
         // if (eventValue==SONAR_EVT_ECHO_RISE) sendSerial("RISE Sonar::echoPulseEvent");
         // if (eventValue==SONAR_EVT_ECHO_FALL) sendSerial("FALL Sonar::echoPulseEvent");
         uint64_t now=system_timer_current_time_us();
-        if (eventValue==SONAR_EVT_ECHO_RISE){
-            echo.setTimestamp(now);
-        };
-        if (eventValue==SONAR_EVT_ECHO_FALL){
-            uint64_t echoPulseTime_us= now - echo.getTimestamp();
-            if (echoPulseTime_us < (maxSonarRange_cm/speedOfSoundInAir_mps)){
-                distance_cm=(echoPulseTime_us*0.0000001)*speedOfSoundInAir_mps*(1/2);
-            }else{
-                distance_cm=maxSonarRange_cm;
-            }
-           sendEvent();
-        };
+        sendSerial(now);
+
+        // if (eventValue==SONAR_EVT_ECHO_RISE){
+        //     echo.setTimestamp(now);
+        // };
+        // if (eventValue==SONAR_EVT_ECHO_FALL){
+        //     uint64_t echoPulseTime_us= now - echo.getTimestamp();
+        //     if (echoPulseTime_us < echoTimeMax_us){
+        //         distance_cm=echoPulseTime_us/58.0;
+        //     }else{
+        //         distance_cm=maxSonarRange_cm;
+        //     }
+        //    sendEvent();
+        // };
     };
 
     void Sonar::onEchoRise(void)
@@ -113,7 +115,7 @@
     {
         if (!isDebugOn) return;
         MicroBit uBit;
-        char buffer [16];
+        char buffer [32];
         itoa (number,buffer);
         uBit.serial.printf(buffer);
         uBit.serial.printf("\r\n");
@@ -123,7 +125,7 @@
     {
         if (!isDebugOn) return;
         MicroBit uBit;
-        char buffer [16];
+        char buffer [32];
         float valueFLT=value*100;
         int valueINT=(int)round(valueFLT);
         itoa (valueINT,buffer);
