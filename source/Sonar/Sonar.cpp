@@ -11,7 +11,7 @@
         nextTriggerTime=0;
         distance_cm=0.0;
         systemTimerAddComponent();
-        echo.mode(PullUp);//FIXME:NEEDED??? or is PullNone oke?
+        //echo.mode(PullUp);//FIXME:NEEDED??? or is PullNone oke?
         echo.rise(this,&Sonar::onEchoRise);
         echo.fall(this,&Sonar::onEchoFall);
     };
@@ -33,7 +33,19 @@
         // if (eventValue==SONAR_EVT_ECHO_RISE) sendSerial("RISE Sonar::echoPulseEvent");
         // if (eventValue==SONAR_EVT_ECHO_FALL) sendSerial("FALL Sonar::echoPulseEvent");
         uint64_t now=system_timer_current_time_us();
+
+        // if (eventValue==SONAR_EVT_ECHO_RISE)sendSerial("Ri");
+        // if (eventValue==SONAR_EVT_ECHO_FALL)sendSerial("Fa");
         sendSerial(now);
+
+        if (eventValue==SONAR_EVT_ECHO_RISE) echo.setTimestamp(now);
+        if (eventValue==SONAR_EVT_ECHO_FALL){
+            uint64_t echoPulseTime_us= now - echo.getTimestamp();
+            // sendSerial(echoPulseTime_us);
+            distance_cm=echoPulseTime_us/58.0;
+            sendSerial(distance_cm);
+            sendEvent();
+        };
 
         // if (eventValue==SONAR_EVT_ECHO_RISE){
         //     echo.setTimestamp(now);
@@ -121,14 +133,14 @@
         uBit.serial.printf("\r\n");
     };
 
-    void Sonar::sendSerial(const float value)
-    {
-        if (!isDebugOn) return;
-        MicroBit uBit;
-        char buffer [32];
-        float valueFLT=value*100;
-        int valueINT=(int)round(valueFLT);
-        itoa (valueINT,buffer);
-        uBit.serial.printf(buffer);
-        uBit.serial.printf("\r\n");
-    };
+    // void Sonar::sendSerial(const float value)
+    // {
+    //     if (!isDebugOn) return;
+    //     MicroBit uBit;
+    //     char buffer [32];
+    //     float valueFLT=value*100;
+    //     int valueINT=(int)round(valueFLT);
+    //     itoa (valueINT,buffer);
+    //     uBit.serial.printf(buffer);
+    //     uBit.serial.printf("\r\n");
+    // };

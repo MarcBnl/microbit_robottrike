@@ -42,7 +42,7 @@
             void sendEvent(void);
             void sendSerial(const char* text);
             void sendSerial(const int number);
-            void sendSerial(const float value);
+            // void sendSerial(const float value);
     };
 
 #endif /*SONAR_H*/
