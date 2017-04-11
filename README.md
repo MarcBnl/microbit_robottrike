@@ -21,6 +21,8 @@ https://developer.mbed.org/teams/Lancaster-University/code/microbit-dal/file/ee4
 https://developer.mbed.org/teams/Lancaster-University/code/microbit-dal/docs/tip/
 https://developer.mbed.org/teams/Lancaster-University/code/microbit-dal/docs/eb91bba49623/classMicroBitComponent.html
 https://github.com/lancaster-university/microbit-dal/blob/master/source/core/MicroBitSystemTimer.cpp
+http://microbit-challenges.readthedocs.io/en/latest/tutorials/accelerometer.html
+
 
 # -----------------------------------------------------------
 
