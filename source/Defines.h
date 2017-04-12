@@ -13,6 +13,8 @@
 #define MOTOR_FUNCTION_EVT_TURNBACKRIGHT  5
 #define MOTOR_FUNCTION_EVT_TURNBACKLEFT   6
 
+#define ACCELEROMETER_ID            1701
+
 #define SONAR_ID                    1601
 #define SONAR_EVT_PING             -1
 #define SONAR_EVT_0PRCNT            0
