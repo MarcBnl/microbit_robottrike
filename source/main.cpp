@@ -8,6 +8,7 @@
 #include "source/Motors/MotorControl.h"
 #include "source/Sonar/SonarControl.h"
 #include "source/Sonar/Sonar.h"
+#include "source/Accelerometer/AccelerometerControl.h"
 
 // InterruptIn buttonA(MICROBIT_PIN_BUTTON_A);
 // DigitalInOut led(MICROBIT_PIN_P1);
@@ -18,9 +19,13 @@
 /*GLOBAL RUNTIME COMPONENTS*/
 MicroBitMessageBus msgBus;
 MicroBitDisplay display;
+MicroBitI2C i2c = MicroBitI2C(I2C_SDA0, I2C_SCL0);
+MicroBitAccelerometer accelerometer = MicroBitAccelerometer(i2c); 
 /*GLOBAL OBJECTS*/
 DisplayControl displCtrl(&msgBus,&display);
-SonarControl snrCtrl;
+AccelerometerControl accelerometerCtrl(&accelerometer);
+//SonarControl snrCtrl;
+
 
 int main() {
     // buttonA.rise(&flipLed);

@@ -11,17 +11,22 @@
 
 #define ACCELEROMETER_COMPONENT_RUNNING 0x1
 
-    class Accelerometer : public MicroBitComponent
+    class AccelerometerControl : public MicroBitComponent
     {
         public:
-            Accelerometer(void);
-            ~Accelerometer(void);
+            AccelerometerControl(MicroBitAccelerometer *accelerometer);
+            ~AccelerometerControl(void);
             virtual void idleTick(void){sendSerial("Accelerometer::idleTick");};
             virtual void systemTick(void){sendSerial("Accelerometer::systemTick");};
+            boolean isCalibrated;
         private:
-            unsigned int status;
+            MicroBitAccelerometer *ubitAccelerometer;
+            double Xcal_mg;
+            double Ycal_mg;
+            double Zcal_mg;
             int systemTimerAddComponent(void);
             void sendSerial(const char* text);
+            bool doCalibration(void);
     };
 
 #endif /*ACCELEROMETER_H*/
