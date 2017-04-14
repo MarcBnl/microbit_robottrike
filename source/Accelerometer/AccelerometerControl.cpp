@@ -37,6 +37,7 @@
             Xsum_mg=Xsum_mg+ubitAccelerometer.getX();
             Ysum_mg=Ysum_mg+ubitAccelerometer.getY();
             Zsum_mg=Zsum_mg+ubitAccelerometer.getZ();
+            fiber_sleep(2);//ms
         }
         Xcal_mg=Xsum_mg/calibrationSamples;
         Ycal_mg=Ysum_mg/calibrationSamples;
