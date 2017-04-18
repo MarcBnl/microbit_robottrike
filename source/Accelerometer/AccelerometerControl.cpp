@@ -7,7 +7,7 @@
         sendSerial("AccelerometerControl::AccelerometerControl");
         isCalibrated=doCalibration();
         systemTimerAddComponent();
-        ubitAccelerometer.setRange(3);
+        ubitAccelerometer->setRange(3);
     };
 
     AccelerometerControl::~AccelerometerControl(void)
@@ -34,14 +34,17 @@
         double Ysum_mg=0;
         double Zsum_mg=0;
         for (int sample=0; sample<calibrationSamples; sample++){
-            Xsum_mg=Xsum_mg+ubitAccelerometer.getX();
-            Ysum_mg=Ysum_mg+ubitAccelerometer.getY();
-            Zsum_mg=Zsum_mg+ubitAccelerometer.getZ();
+            Xsum_mg=Xsum_mg+ubitAccelerometer->getX();
+            Ysum_mg=Ysum_mg+ubitAccelerometer->getY();
+            Zsum_mg=Zsum_mg+ubitAccelerometer->getZ();
             fiber_sleep(2);//ms
         }
         Xcal_mg=Xsum_mg/calibrationSamples;
         Ycal_mg=Ysum_mg/calibrationSamples;
         Zcal_mg=Zsum_mg/calibrationSamples;
+        sendSerial("Xcal_mg");sendSerial(Xcal_mg);
+        sendSerial("Ycal_mg");sendSerial(Ycal_mg);
+        sendSerial("Zcal_mg");sendSerial(Zcal_mg);
         return true;
     };
 
@@ -50,5 +53,15 @@
         if (!isDebugOn) return;
         MicroBit uBit;
         uBit.serial.printf(text);
+        uBit.serial.printf("\r\n");
+    };
+
+    void AccelerometerControl::sendSerial(const int number)
+    {
+        if (!isDebugOn) return;
+        MicroBit uBit;
+        char buffer [32];
+        itoa (number,buffer);
+        uBit.serial.printf(buffer);
         uBit.serial.printf("\r\n");
     };

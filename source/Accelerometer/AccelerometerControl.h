@@ -13,12 +13,13 @@
 
     class AccelerometerControl : public MicroBitComponent
     {
+        static const bool isDebugOn=true;
         public:
             AccelerometerControl(MicroBitAccelerometer *accelerometer);
             ~AccelerometerControl(void);
-            virtual void idleTick(void){sendSerial("Accelerometer::idleTick");};
-            virtual void systemTick(void){sendSerial("Accelerometer::systemTick");};
-            boolean isCalibrated;
+            //virtual void idleTick(void){sendSerial("Accelerometer::idleTick");};
+            //virtual void systemTick(void){sendSerial("Accelerometer::systemTick");};
+            bool isCalibrated;
         private:
             MicroBitAccelerometer *ubitAccelerometer;
             double Xcal_mg;
@@ -26,6 +27,7 @@
             double Zcal_mg;
             int systemTimerAddComponent(void);
             void sendSerial(const char* text);
+            void sendSerial(const int number);
             bool doCalibration(void);
     };
 
