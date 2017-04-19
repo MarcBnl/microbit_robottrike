@@ -15,7 +15,9 @@
         static const int motor2Col=4;
         static const int motor2Row=0; 
         static const int sonarCol=2;
-        static const int sonarRow=0;      
+        static const int sonarRow=0;     
+        static const int acceloCol=2;
+        static const int acceloRow=0;             
         public:
             DisplayControl(MicroBitMessageBus *msgBus,MicroBitDisplay *display);
             ~DisplayControl(void);
@@ -28,6 +30,7 @@
             void updateImageWithMotorInfo(int motorFunction, int col, int row);
             void updateSonarInfo(MicroBitEvent e);
             void updateImageWithSonarInfo(int distanceNr);
+            void updateAccelorometerInfo(MicroBitEvent e);
     };
 
 // } /*dsplCtrl*/

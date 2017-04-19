@@ -13,8 +13,6 @@
 #define MOTOR_FUNCTION_EVT_TURNBACKRIGHT  5
 #define MOTOR_FUNCTION_EVT_TURNBACKLEFT   6
 
-#define ACCELEROMETER_ID            1701
-
 #define SONAR_ID                    1601
 #define SONAR_EVT_PING             -1
 #define SONAR_EVT_0PRCNT            0
@@ -23,5 +21,14 @@
 #define SONAR_EVT_50PRCNT           50
 #define SONAR_EVT_75PRCNT           75
 #define SONAR_EVT_100PRCNT          100
+
+#define ACCELEROMETER_ID                1701
+#define ACCELEROMETER_EVT_IDLE         -1
+#define ACCELEROMETER_EVT_CALIBRATING   0
+#define ACCELEROMETER_EVT_VECTORING     1
+#define ACCELEROMETER_EVT_STILL         2
+#define ACCELEROMETER_EVT_MOVING        3
+#define ACCELEROMETER_EVT_COLLISION     4
+
 
 #endif /*DEFINES_H*/
