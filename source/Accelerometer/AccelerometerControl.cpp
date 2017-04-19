@@ -76,6 +76,7 @@
 
     void AccelerometerControl::fireStatusEvent(void)
     {
+        // <---COLLISION---(-Value)lastAcceleration(+Value)---MOVING--->
         const double diffMovingAcceleration_mg=200.0;
         const double diffCollisionAcceleration_mg=200.0;
         double acceleration_mg=calcAcceleration_mg();
