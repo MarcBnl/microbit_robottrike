@@ -4,6 +4,7 @@
     AccelerometerControl::AccelerometerControl(MicroBitAccelerometer *accelerometer)
     {
         ubitAccelerometer=accelerometer;
+        nextUpdateTime=0;
         sendSerial("AccelerometerControl::AccelerometerControl");
         isCalibrated=doCalibration();
         systemTimerAddComponent();
@@ -26,6 +27,11 @@
         return result;
     };
 
+    void AccelerometerControl::systemTick(void)
+    {
+        // sendSerial("AccelerometerControlSonar::systemTick");
+        if (isNewUpdateNeeded()==true) startUpdate();
+    };
 
     bool AccelerometerControl::doCalibration(void)
     {
@@ -48,6 +54,19 @@
         sendSerial("Zcal_mg");sendSerial(Zcal_mg);
         MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_IDLE);
         return true;
+    };
+
+    bool AccelerometerControl::isNewUpdateNeeded(void)
+    {
+        return system_timer_current_time() >= nextUpdateTime;
+    };
+
+    void AccelerometerControl::startUpdate(void)
+    {
+        double acceleration_mg=calcAcceleration_mg();
+        fireStatusEvent(acceleration_mg);
+        lastAcceleration_mg=acceleration_mg;
+        nextUpdateTime=system_timer_current_time()+updatePeriod_ms;
     };
 
     double AccelerometerControl::calcAcceleration_mg(void)
@@ -73,20 +92,18 @@
         sendSerial("acceleration_mg");sendSerial(acceleration_mg);   
         return acceleration_mg;
     };
-
-    void AccelerometerControl::fireStatusEvent(void)
+    
+    void AccelerometerControl::fireStatusEvent(const double acceleration_mg)
     {
         // <---COLLISION---(-Value)lastAcceleration(+Value)---MOVING--->
         const double diffMovingAcceleration_mg=200.0;
         const double diffCollisionAcceleration_mg=200.0;
-        double acceleration_mg=calcAcceleration_mg();
         if (acceleration_mg>=(lastAcceleration_mg+diffMovingAcceleration_mg)) 
             MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_MOVING);
         else if (acceleration_mg<=(lastAcceleration_mg-diffCollisionAcceleration_mg))
             MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_COLLISION);
         else
             MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_STILL);
-        lastAcceleration_mg=acceleration_mg;
     };
 
     void AccelerometerControl::sendSerial(const char* text)

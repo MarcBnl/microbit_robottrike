@@ -17,23 +17,27 @@
     {
         static const bool isDebugOn=true;
         static double lastAcceleration_mg=0.0;
+        static const uint64_t updatePeriod_ms=500; 
         public:
             AccelerometerControl(MicroBitAccelerometer *accelerometer);
             ~AccelerometerControl(void);
             //virtual void idleTick(void){sendSerial("Accelerometer::idleTick");};
-            //virtual void systemTick(void){sendSerial("Accelerometer::systemTick");};
+            virtual void systemTick(void);
             bool isCalibrated;
         private:
             MicroBitAccelerometer *ubitAccelerometer;
             double Xcal_mg;
             double Ycal_mg;
             double Zcal_mg;
+            unsigned int nextUpdateTime;
             int systemTimerAddComponent(void);
+            bool doCalibration(void);
+            bool isNewUpdateNeeded(void);
+            void startUpdate(void);
+            double calcAcceleration_mg(void);
+            void fireStatusEvent(const double acceleration_mg);
             void sendSerial(const char* text);
             void sendSerial(const int number);
-            bool doCalibration(void);
-            double calcAcceleration_mg(void);
-            void fireStatusEvent(void);
     };
 
 #endif /*ACCELEROMETER_H*/
