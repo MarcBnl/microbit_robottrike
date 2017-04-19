@@ -4,11 +4,11 @@
     AccelerometerControl::AccelerometerControl(MicroBitAccelerometer *accelerometer)
     {
         ubitAccelerometer=accelerometer;
+        ubitAccelerometer->setRange(3);
         nextUpdateTime=0;
         sendSerial("AccelerometerControl::AccelerometerControl");
         isCalibrated=doCalibration();
         systemTimerAddComponent();
-        ubitAccelerometer->setRange(3);
     };
 
     AccelerometerControl::~AccelerometerControl(void)
