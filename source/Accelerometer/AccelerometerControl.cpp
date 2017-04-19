@@ -5,6 +5,7 @@
     {
         ubitAccelerometer=accelerometer;
         ubitAccelerometer->setRange(3);
+        lastAcceleration_mg=0.0;
         nextUpdateTime=0;
         sendSerial("AccelerometerControl::AccelerometerControl");
         isCalibrated=doCalibration();
@@ -35,8 +36,8 @@
 
     bool AccelerometerControl::doCalibration(void)
     {
-        MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_CALIBRATING);
-        const int calibrationSamples=2048;
+        MicroBitEvent evt1(ACCELEROMETER_ID,ACCELEROMETER_EVT_CALIBRATING);
+        const int calibrationSamples=1024;
         double Xsum_mg=0;
         double Ysum_mg=0;
         double Zsum_mg=0;
@@ -52,7 +53,7 @@
         sendSerial("Xcal_mg");sendSerial(Xcal_mg);
         sendSerial("Ycal_mg");sendSerial(Ycal_mg);
         sendSerial("Zcal_mg");sendSerial(Zcal_mg);
-        MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_IDLE);
+        MicroBitEvent evt2(ACCELEROMETER_ID,ACCELEROMETER_EVT_IDLE);
         return true;
     };
 
@@ -72,7 +73,7 @@
     double AccelerometerControl::calcAcceleration_mg(void)
     {
         MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_VECTORING);
-        const int vectoringSamples=512;
+        const int vectoringSamples=10;//512;
         double Xsum_mg=0;
         double Ysum_mg=0;
         double Zsum_mg=0;
@@ -80,7 +81,7 @@
             Xsum_mg=Xsum_mg+ubitAccelerometer->getX();
             Ysum_mg=Ysum_mg+ubitAccelerometer->getY();
             Zsum_mg=Zsum_mg+ubitAccelerometer->getZ();
-            fiber_sleep(2);//ms
+            //fiber_sleep(2);//ms
         }
         double X_mg=(Xsum_mg/vectoringSamples)-Xcal_mg;
         double Y_mg=(Ysum_mg/vectoringSamples)-Ycal_mg;
@@ -95,9 +96,9 @@
     
     void AccelerometerControl::fireStatusEvent(const double acceleration_mg)
     {
+        const double diffMovingAcceleration_mg=100.0;
+        const double diffCollisionAcceleration_mg=1000.0;
         // <---COLLISION---(-Value)lastAcceleration(+Value)---MOVING--->
-        const double diffMovingAcceleration_mg=200.0;
-        const double diffCollisionAcceleration_mg=200.0;
         if (acceleration_mg>=(lastAcceleration_mg+diffMovingAcceleration_mg)) 
             MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_MOVING);
         else if (acceleration_mg<=(lastAcceleration_mg-diffCollisionAcceleration_mg))

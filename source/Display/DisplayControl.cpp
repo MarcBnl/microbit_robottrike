@@ -19,20 +19,20 @@
         ubitMsgBus->listen(MOTOR2_ID, MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor2Info);
         ubitMsgBus->listen(MOTOR2_ID, MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor2Info);
 
-        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_PING, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_0PRCNT, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_5PRCNT, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_25PRCNT, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_50PRCNT, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_75PRCNT, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->listen(SONAR_ID, SONAR_EVT_100PRCNT, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->listen(SONAR_ID, SONAR_EVT_PING, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->listen(SONAR_ID, SONAR_EVT_0PRCNT, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->listen(SONAR_ID, SONAR_EVT_5PRCNT, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->listen(SONAR_ID, SONAR_EVT_25PRCNT, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->listen(SONAR_ID, SONAR_EVT_50PRCNT, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->listen(SONAR_ID, SONAR_EVT_75PRCNT, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->listen(SONAR_ID, SONAR_EVT_100PRCNT, this, &DisplayControl::updateSonarInfo);
 
-        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_IDLE, this, &DisplayControl::updateAccelorometerInfo);
-        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_STILL, this, &DisplayControl::updateAccelorometerInfo);
-        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_CALIBRATING, this, &DisplayControl::updateAccelorometerInfo);
-        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_VECTORING, this, &DisplayControl::updateAccelorometerInfo);
-        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_MOVING, this, &DisplayControl::updateAccelorometerInfo);
-        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_COLLISION, this, &DisplayControl::updateAccelorometerInfo);
+        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_IDLE, this, &DisplayControl::updateAccelerometerInfo);
+        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_STILL, this, &DisplayControl::updateAccelerometerInfo);
+        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_CALIBRATING, this, &DisplayControl::updateAccelerometerInfo);
+        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_VECTORING, this, &DisplayControl::updateAccelerometerInfo);
+        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_MOVING, this, &DisplayControl::updateAccelerometerInfo);
+        ubitMsgBus->listen(ACCELEROMETER_ID, ACCELEROMETER_EVT_COLLISION, this, &DisplayControl::updateAccelerometerInfo);
     };
 
     DisplayControl::~DisplayControl(void)
@@ -47,20 +47,20 @@
         ubitMsgBus->ignore(MOTOR2_ID, MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor2Info);
         ubitMsgBus->ignore(MOTOR2_ID, MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor2Info); 
 
-        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_PING, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_0PRCNT, this, &DisplayControl::updateSonarInfo); 
-        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_5PRCNT, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_25PRCNT, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_50PRCNT, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_75PRCNT, this, &DisplayControl::updateSonarInfo);
-        ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_100PRCNT, this, &DisplayControl::updateSonarInfo);   
+        // ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_PING, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_0PRCNT, this, &DisplayControl::updateSonarInfo); 
+        // ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_5PRCNT, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_25PRCNT, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_50PRCNT, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_75PRCNT, this, &DisplayControl::updateSonarInfo);
+        // ubitMsgBus->ignore(SONAR_ID, SONAR_EVT_100PRCNT, this, &DisplayControl::updateSonarInfo);   
 
-        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_IDLE, this, &DisplayControl::updateAccelorometerInfo);
-        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_STILL, this, &DisplayControl::updateAccelorometerInfo);
-        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_CALIBRATING, this, &DisplayControl::updateAccelorometerInfo);
-        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_VECTORING, this, &DisplayControl::updateAccelorometerInfo);
-        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_MOVING, this, &DisplayControl::updateAccelorometerInfo);
-        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_COLLISION, this, &DisplayControl::updateAccelorometerInfo);           
+        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_IDLE, this, &DisplayControl::updateAccelerometerInfo);
+        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_STILL, this, &DisplayControl::updateAccelerometerInfo);
+        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_CALIBRATING, this, &DisplayControl::updateAccelerometerInfo);
+        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_VECTORING, this, &DisplayControl::updateAccelerometerInfo);
+        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_MOVING, this, &DisplayControl::updateAccelerometerInfo);
+        ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_COLLISION, this, &DisplayControl::updateAccelerometerInfo);           
     };
 
     void DisplayControl::updateMotor1Info(MicroBitEvent e)
@@ -126,12 +126,12 @@
         ubitDisplay->printAsync(displayImage);
     };
 
-    void updateAccelorometerInfo(MicroBitEvent e)
+    void DisplayControl::updateAccelerometerInfo(MicroBitEvent e)
     {
-        static const uint8_t        idle[]={0,0,1,0,0}; MicroBitImage idleImage(1,5,idle);
+        static const uint8_t        idle[]={0,1,1,1,0}; MicroBitImage idleImage(1,5,idle);
         static const uint8_t calibrating[]={1,0,0,0,1}; MicroBitImage calibratingImage(1,5,calibrating);
         static const uint8_t   vectoring[]={0,1,0,1,0}; MicroBitImage vectoringImage(1,5,vectoring);
-        static const uint8_t       still[]={0,1,1,1,0}; MicroBitImage stillImage(1,5,still);
+        static const uint8_t       still[]={0,0,1,0,0}; MicroBitImage stillImage(1,5,still);
         static const uint8_t      moving[]={1,1,0,0,0}; MicroBitImage movingImage(1,5,moving);
         static const uint8_t   collision[]={0,0,0,1,1}; MicroBitImage collisionImage(1,5,collision);
         if (e.value==ACCELEROMETER_EVT_MOVING)
@@ -146,6 +146,7 @@
             displayImage.paste(stillImage,acceloCol,acceloRow);
         else
             displayImage.paste(idleImage,acceloCol,acceloRow);
+        ubitDisplay->printAsync(displayImage);
     };
 
 // } /*dsplCtrl*/

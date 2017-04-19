@@ -15,7 +15,7 @@
 
     class Sonar : public MicroBitComponent
     {
-        static const bool isDebugOn=true;
+        static const bool isDebugOn=false;
         static const int triggerDuration_us=12;
         static const uint64_t triggerPeriod_ms=500; 
         static const uint64_t echoTimeMax_us=25000; //NOT less than 25ms (~400cm)

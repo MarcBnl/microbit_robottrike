@@ -15,9 +15,8 @@
 
     class AccelerometerControl : public MicroBitComponent
     {
-        static const bool isDebugOn=true;
-        static double lastAcceleration_mg=0.0;
-        static const uint64_t updatePeriod_ms=500; 
+        static const bool isDebugOn=false;
+        static const uint64_t updatePeriod_ms=50; 
         public:
             AccelerometerControl(MicroBitAccelerometer *accelerometer);
             ~AccelerometerControl(void);
@@ -26,6 +25,7 @@
             bool isCalibrated;
         private:
             MicroBitAccelerometer *ubitAccelerometer;
+            double lastAcceleration_mg;
             double Xcal_mg;
             double Ycal_mg;
             double Zcal_mg;
