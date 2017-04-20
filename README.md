@@ -39,6 +39,11 @@ https://developer.mbed.org/users/isaeldiaz/code/MicrobitUltrasound/
 
 # -----------------------------------------------------------
 
+# Various
+https://helloacm.com/c-function-to-compute-numerical-integral-using-function-pointers/
+
+# -----------------------------------------------------------
+
 unsigned int status=0;
 unsigned int PING_SEND_NEW=0x2; //#define
 unsigned int PING_ONGOING=0x4; //#define

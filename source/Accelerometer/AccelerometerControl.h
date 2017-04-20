@@ -11,12 +11,12 @@
 #include "math.h"
 #include "Defines.h"
 
-#define ACCELEROMETER_COMPONENT_RUNNING 0x1
-
     class AccelerometerControl : public MicroBitComponent
     {
         static const bool isDebugOn=false;
-        static const uint64_t updatePeriod_ms=50; 
+        static const int sampleRate_ms=15;
+        static const uint64_t updatePeriod_ms=sampleRate_ms*50; 
+        static const int integrationSteps=50;
         public:
             AccelerometerControl(MicroBitAccelerometer *accelerometer);
             ~AccelerometerControl(void);
@@ -29,12 +29,14 @@
             double Xcal_mg;
             double Ycal_mg;
             double Zcal_mg;
+            bool isUpdating;
             unsigned int nextUpdateTime;
             int systemTimerAddComponent(void);
             bool doCalibration(void);
             bool isNewUpdateNeeded(void);
             void startUpdate(void);
             double calcAcceleration_mg(void);
+            double calcSpeed_ms(void);//integral
             void fireStatusEvent(const double acceleration_mg);
             void sendSerial(const char* text);
             void sendSerial(const int number);
