@@ -30,35 +30,26 @@
 
     void Sonar::echoPulseEvent(int eventValue)
     {
-        // if (eventValue==SONAR_EVT_ECHO_RISE) sendSerial("RISE Sonar::echoPulseEvent");
-        // if (eventValue==SONAR_EVT_ECHO_FALL) sendSerial("FALL Sonar::echoPulseEvent");
-        uint64_t now=system_timer_current_time_us();
+        if (eventValue==SONAR_EVT_ECHO_RISE) sendSerial("RISE Sonar::echoPulseEvent");
+        if (eventValue==SONAR_EVT_ECHO_FALL) sendSerial("FALL Sonar::echoPulseEvent");
+        if (eventValue==SONAR_EVT_ECHO_RISE)sendSerial("Ri");
+        if (eventValue==SONAR_EVT_ECHO_FALL)sendSerial("Fa");
 
-        // if (eventValue==SONAR_EVT_ECHO_RISE)sendSerial("Ri");
-        // if (eventValue==SONAR_EVT_ECHO_FALL)sendSerial("Fa");
+        uint64_t now=system_timer_current_time_us();
         sendSerial(now);
 
-        if (eventValue==SONAR_EVT_ECHO_RISE) echo.setTimestamp(now);
+        if (eventValue==SONAR_EVT_ECHO_RISE){
+            echo.setTimestamp(now);
+        };
         if (eventValue==SONAR_EVT_ECHO_FALL){
             uint64_t echoPulseTime_us= now - echo.getTimestamp();
-            // sendSerial(echoPulseTime_us);
-            distance_cm=echoPulseTime_us/58.0;
-            sendSerial(distance_cm);
-            sendEvent();
+            if (echoPulseTime_us < echoTimeMax_us){
+                distance_cm=echoPulseTime_us/58.0;
+            }else{
+                distance_cm=maxSonarRange_cm;
+            }
+           fireStatusEvent();
         };
-
-        // if (eventValue==SONAR_EVT_ECHO_RISE){
-        //     echo.setTimestamp(now);
-        // };
-        // if (eventValue==SONAR_EVT_ECHO_FALL){
-        //     uint64_t echoPulseTime_us= now - echo.getTimestamp();
-        //     if (echoPulseTime_us < echoTimeMax_us){
-        //         distance_cm=echoPulseTime_us/58.0;
-        //     }else{
-        //         distance_cm=maxSonarRange_cm;
-        //     }
-        //    sendEvent();
-        // };
     };
 
     void Sonar::onEchoRise(void)
@@ -104,7 +95,7 @@
         return result;
     };
 
-    void Sonar::sendEvent(void)
+    void Sonar::fireStatusEvent(void)
     {
         float distancePercentage=(distance_cm/maxSonarRange_cm)*100;
         // sendSerial(distancePercentage);

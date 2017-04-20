@@ -73,7 +73,7 @@
     double AccelerometerControl::calcAcceleration_mg(void)
     {
         MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_VECTORING);
-        const int vectoringSamples=10;//512;
+        const int vectoringSamples=2;//512;
         double Xsum_mg=0;
         double Ysum_mg=0;
         double Zsum_mg=0;

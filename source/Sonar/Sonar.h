@@ -39,7 +39,7 @@
             void startNewMeasurement(void);
             bool isNewTriggerNeeded(void);
             void newTrigger(void);
-            void sendEvent(void);
+            void fireStatusEvent(void);
             void sendSerial(const char* text);
             void sendSerial(const int number);
             // void sendSerial(const float value);
