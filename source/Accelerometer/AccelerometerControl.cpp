@@ -74,8 +74,8 @@
         nextUpdateTime=system_timer_current_time()+updatePeriod_ms;
     };
 
-    double AccelerometerControl::calcSpeed_ms(void)//integral
-    {
+    double AccelerometerControl::calcSpeed_ms(void)
+    {   //integrate acceleration over sampleRate time
         double speed_ms=0.0;
         for (int step=0; i<integrationSteps; step++){
             speed_ms+=(calcAcceleration_mg()*0.001)*(sampleRate_ms*0.001);//area
@@ -95,23 +95,13 @@
         return acceleration_mg;
     };
     
-    void AccelerometerControl::fireStatusEvent(const double speed_ms)//acceleration_mg)
+    void AccelerometerControl::fireStatusEvent(const double speed_ms)
     {
-        const double speedThreshold_ms=0.03;//=3cm/s
+        const double speedThreshold_ms=0.01;//=3cm/s
         if (speed_ms>=speedThreshold_ms)
             MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_MOVING);
         else
             MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_STILL);
-
-        // const double diffMovingAcceleration_mg=100.0;
-        // const double diffCollisionAcceleration_mg=1000.0;
-        // // <---COLLISION---(-Value)lastAcceleration(+Value)---MOVING--->
-        // if (acceleration_mg>=(lastAcceleration_mg+diffMovingAcceleration_mg)) 
-        //     MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_MOVING);
-        // else if (acceleration_mg<=(lastAcceleration_mg-diffCollisionAcceleration_mg))
-        //     MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_COLLISION);
-        // else
-        //     MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_STILL);
     };
 
     void AccelerometerControl::sendSerial(const char* text)
