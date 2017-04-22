@@ -22,7 +22,7 @@
     bool AccelerometerControl::doCalibration(void)
     {
         MicroBitEvent evt1(ACCELEROMETER_ID,ACCELEROMETER_EVT_CALIBRATING);
-        const int calibrationSamples=512;
+        const int calibrationSamples=256;
         double Xsum_mg=0;
         double Ysum_mg=0;
         double Zsum_mg=0;
@@ -77,10 +77,11 @@
     double AccelerometerControl::calcSpeed_ms(void)
     {   //integrate acceleration over sampleRate time
         double speed_ms=0.0;
-        for (int step=0; i<integrationSteps; step++){
+        for (int step=0; step<integrationSteps; step++){
             speed_ms+=(calcAcceleration_mg()*0.001)*(sampleRate_ms*0.001);//area
             fiber_sleep(sampleRate_ms);//ms
         }
+        sendSerial("speed_ms");sendSerial(speed_ms); 
         return speed_ms;
     };
 
@@ -97,7 +98,7 @@
     
     void AccelerometerControl::fireStatusEvent(const double speed_ms)
     {
-        const double speedThreshold_ms=0.01;//=3cm/s
+        const double speedThreshold_ms=0.03;//=3cm/s
         if (speed_ms>=speedThreshold_ms)
             MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_MOVING);
         else

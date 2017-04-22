@@ -14,9 +14,9 @@
     class AccelerometerControl : public MicroBitComponent
     {
         static const bool isDebugOn=false;
-        static const int sampleRate_ms=15;
-        static const uint64_t updatePeriod_ms=sampleRate_ms*50; 
-        static const int integrationSteps=50;
+        static const int sampleRate_ms=30;
+        static const uint64_t updatePeriod_ms=sampleRate_ms*5; 
+        static const int integrationSteps=5;
         public:
             AccelerometerControl(MicroBitAccelerometer *accelerometer);
             ~AccelerometerControl(void);

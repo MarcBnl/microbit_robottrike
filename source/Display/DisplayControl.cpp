@@ -129,10 +129,10 @@
     void DisplayControl::updateAccelerometerInfo(MicroBitEvent e)
     {
         static const uint8_t        idle[]={0,1,1,1,0}; MicroBitImage idleImage(1,5,idle);
-        static const uint8_t calibrating[]={1,0,0,0,1}; MicroBitImage calibratingImage(1,5,calibrating);
+        static const uint8_t calibrating[]={1,0,1,0,1}; MicroBitImage calibratingImage(1,5,calibrating);
         static const uint8_t   vectoring[]={0,1,0,1,0}; MicroBitImage vectoringImage(1,5,vectoring);
         static const uint8_t       still[]={0,0,1,0,0}; MicroBitImage stillImage(1,5,still);
-        static const uint8_t      moving[]={1,1,0,0,0}; MicroBitImage movingImage(1,5,moving);
+        static const uint8_t      moving[]={1,1,1,1,1}; MicroBitImage movingImage(1,5,moving);
         static const uint8_t   collision[]={0,0,0,1,1}; MicroBitImage collisionImage(1,5,collision);
         if (e.value==ACCELEROMETER_EVT_MOVING)
             displayImage.paste(movingImage,acceloCol,acceloRow);
