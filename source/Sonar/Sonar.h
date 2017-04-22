@@ -24,7 +24,7 @@
         public:
             Sonar(void);
             ~Sonar(void);
-            virtual void idleTick(void){ sendSerial("Sonar::idleTick");};
+            virtual void idleTick(void){sendSerial("Sonar::idleTick");};
             virtual void systemTick(void);
             float distance_cm;
         private:
@@ -42,7 +42,6 @@
             void fireStatusEvent(void);
             void sendSerial(const char* text);
             void sendSerial(const int number);
-            // void sendSerial(const float value);
     };
 
 #endif /*SONAR_H*/

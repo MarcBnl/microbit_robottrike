@@ -9,12 +9,7 @@
 #include "source/Sonar/SonarControl.h"
 #include "source/Sonar/Sonar.h"
 #include "source/Accelerometer/AccelerometerControl.h"
-
-// InterruptIn buttonA(MICROBIT_PIN_BUTTON_A);
-// DigitalInOut led(MICROBIT_PIN_P1);
-// void flipLed(void){
-//     led.write(!led.read());
-// };
+#include "source/RobotTrikeManager/RobotTrikeManager.h"
 
 /*GLOBAL RUNTIME COMPONENTS*/
 MicroBitMessageBus msgBus;
@@ -28,10 +23,6 @@ AccelerometerControl accelerometerCtrl(&accelerometer);
 
 
 int main() {
-    // buttonA.rise(&flipLed);
-    // led.output();
-    // led.write(1);
-
     //display.scroll("321");   
 
     // displCtrl.updateSonarInfo(150);fiber_sleep(1000);//ms 
