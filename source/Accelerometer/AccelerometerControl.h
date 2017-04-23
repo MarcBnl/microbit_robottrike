@@ -15,7 +15,7 @@
     {
         static const bool isDebugOn=false;
         static const int sampleRate_ms=25;//30;
-        static const uint64_t updatePeriod_ms=sampleRate_ms*15;//5; 
+        static const uint64_t updatePeriod_ms=sampleRate_ms*15; 
         static const int integrationSteps=5;
         public:
             AccelerometerControl(MicroBitAccelerometer *accelerometer);
@@ -35,9 +35,10 @@
             bool doCalibration(void);
             bool isNewUpdateNeeded(void);
             void startUpdate(void);
+            void determineMovement(const double speed_ms);
             double calcAcceleration_mg(void);
             double calcSpeed_ms(void);//integral
-            void fireStatusEvent(const double speed_ms);
+            void fireStatusEvent(void);
             void sendSerial(const char* text);
             void sendSerial(const int number);
     };
