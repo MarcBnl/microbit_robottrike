@@ -14,8 +14,8 @@
     class AccelerometerControl : public MicroBitComponent
     {
         static const bool isDebugOn=false;
-        static const int sampleRate_ms=30;
-        static const uint64_t updatePeriod_ms=sampleRate_ms*5; 
+        static const int sampleRate_ms=25;//30;
+        static const uint64_t updatePeriod_ms=sampleRate_ms*15;//5; 
         static const int integrationSteps=5;
         public:
             AccelerometerControl(MicroBitAccelerometer *accelerometer);
@@ -31,15 +31,13 @@
             double Ycal_mg;
             double Zcal_mg;
             unsigned int nextUpdateTime;
-            bool isUpdating;
             int systemTimerAddComponent(void);
             bool doCalibration(void);
-            bool checkMovement(const double speed_ms);
             bool isNewUpdateNeeded(void);
             void startUpdate(void);
             double calcAcceleration_mg(void);
             double calcSpeed_ms(void);//integral
-            void fireStatusEvent(void);
+            void fireStatusEvent(const double speed_ms);
             void sendSerial(const char* text);
             void sendSerial(const int number);
     };

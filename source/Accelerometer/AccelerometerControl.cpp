@@ -9,7 +9,7 @@
         ubitAccelerometer->setPeriod(sampleRate_ms);
         lastAcceleration_mg=0.0;
         nextUpdateTime=0;
-        isUpdating=false;
+        // isUpdating=false;
         isMoving=false;
         isCalibrated=doCalibration();
         systemTimerAddComponent();
@@ -57,7 +57,7 @@
     void AccelerometerControl::systemTick(void)
     {
         // sendSerial("AccelerometerControlSonar::systemTick");
-        if (isUpdating==false)
+        // if (isUpdating==false)
             if (isNewUpdateNeeded()==true) startUpdate();
     };
 
@@ -68,22 +68,9 @@
 
     void AccelerometerControl::startUpdate(void)
     {
-        isUpdating=true;
         double speed_ms=calcSpeed_ms();
-        bool previousStatus=isMoving;
-        if (checkMovement(speed_ms) != previousStatus) fireStatusEvent();        
-        isUpdating=false;
+        fireStatusEvent(speed_ms);
         nextUpdateTime=system_timer_current_time()+updatePeriod_ms;
-    };
-
-    bool AccelerometerControl::checkMovement(const double speed_ms)
-    {
-        const double speedThreshold_ms=0.03;
-        if (speed_ms>=speedThreshold_ms) 
-            isMoving=true;
-        else 
-            isMoving=false;
-        return isMoving;
     };
 
     double AccelerometerControl::calcSpeed_ms(void)
@@ -108,12 +95,16 @@
         return acceleration_mg;
     };
 
-    void AccelerometerControl::fireStatusEvent(void)
+    void AccelerometerControl::fireStatusEvent(const double speed_ms)
     {
-        if (isMoving==true)
+        const double speedThreshold_ms=0.03;
+        if (speed_ms>=speedThreshold_ms){
+            isMoving=true;
             MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_MOVING);
-        else
+        }else{
+            isMoving=false;
             MicroBitEvent evt(ACCELEROMETER_ID,ACCELEROMETER_EVT_STILL);
+        }
     };
 
     void AccelerometerControl::sendSerial(const char* text)
