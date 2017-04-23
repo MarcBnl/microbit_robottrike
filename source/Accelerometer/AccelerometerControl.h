@@ -23,21 +23,23 @@
             //virtual void idleTick(void){sendSerial("Accelerometer::idleTick");};
             virtual void systemTick(void);
             bool isCalibrated;
+            bool isMoving;
         private:
             MicroBitAccelerometer *ubitAccelerometer;
             double lastAcceleration_mg;
             double Xcal_mg;
             double Ycal_mg;
             double Zcal_mg;
-            bool isUpdating;
             unsigned int nextUpdateTime;
+            bool isUpdating;
             int systemTimerAddComponent(void);
             bool doCalibration(void);
+            bool checkMovement(const double speed_ms);
             bool isNewUpdateNeeded(void);
             void startUpdate(void);
             double calcAcceleration_mg(void);
             double calcSpeed_ms(void);//integral
-            void fireStatusEvent(const double acceleration_mg);
+            void fireStatusEvent(void);
             void sendSerial(const char* text);
             void sendSerial(const int number);
     };
