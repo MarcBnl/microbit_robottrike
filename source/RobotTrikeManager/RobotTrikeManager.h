@@ -12,7 +12,7 @@
     {
         static const bool isDebugOn=false;
         public:
-            RobotTrikeManager(void){};
+            RobotTrikeManager(void);
             ~RobotTrikeManager(void){};
             virtual void idleTick(void){};
             virtual void systemTick(void){};

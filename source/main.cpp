@@ -18,11 +18,28 @@ MicroBitI2C i2c = MicroBitI2C(I2C_SDA0, I2C_SCL0);
 MicroBitAccelerometer accelerometer = MicroBitAccelerometer(i2c); 
 /*GLOBAL OBJECTS*/
 DisplayControl displCtrl(&msgBus,&display);
+MotorControl mtrCtrl;
 AccelerometerControl accelerometerCtrl(&accelerometer);
 //SonarControl snrCtrl;
 
-
 int main() {
+
+    while (accelerometerCtrl.isCalibrated == false){
+        fiber_sleep(1);//ms 
+    }
+
+    While(1){
+        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);
+        
+        while(accelerometerCtrl.isMoving == true){
+            fiber_sleep(3);//ms 
+        }
+
+        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
+        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
+        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);fiber_sleep(1000);//ms        
+    }
+
     //display.scroll("321");   
 
     // displCtrl.updateSonarInfo(150);fiber_sleep(1000);//ms 
@@ -39,15 +56,15 @@ int main() {
     // fiber_sleep(3000);//ms 
 
 
-    MotorControl mtrCtrl;
-     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
-     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
-     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
-     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
-     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
-     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
-     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
-     mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
+    // MotorControl mtrCtrl;
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
     // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKRIGHT);
     // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKLEFT);
     // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
