@@ -1,3 +1,14 @@
+/*
+WARNING
+=======
+micro:bit runtime components should always be brought up as global variables.
+They should not be created as local variables - either in your main method or 
+anywhere else. The reason for this is the the runtime is a multi-threaded 
+environment, and any variables created in stack memory (like local variables) 
+may be paged out by the scheduler, and result in instability if they utilise 
+interrupts or are accessed by other threads. So... don't do it!
+*/
+
 #include "MicroBit.h"
 #include "MicroBitEvent.h"
 #include "DigitalInOut.h"
@@ -17,28 +28,43 @@ MicroBitDisplay display;
 MicroBitI2C i2c = MicroBitI2C(I2C_SDA0, I2C_SCL0);
 MicroBitAccelerometer accelerometer = MicroBitAccelerometer(i2c); 
 /*GLOBAL OBJECTS*/
-DisplayControl displCtrl(&msgBus,&display);
-MotorControl mtrCtrl;
-AccelerometerControl accelerometerCtrl(&accelerometer);
+// DisplayControl displCtrl(&msgBus,&display);
+// MotorControl mtrCtrl;
+// AccelerometerControl accelerometerCtrl(&accelerometer);
 //SonarControl snrCtrl;
 
 int main() {
 
-    while (accelerometerCtrl.isCalibrated == false){
-        fiber_sleep(1);//ms 
-    }
+    DisplayControl displCtrl(&msgBus,&display);
+    MotorControl mtrCtrl;
+    AccelerometerControl accelerometerCtrl(&accelerometer);
 
-    While(1){
+    while (accelerometerCtrl.isCalibrated == false){fiber_sleep(1);}
+
+    int const collisionsMax=5;
+    int collisions=0;
+    While(collisions<=collisionsMax){
         mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);
         
         while(accelerometerCtrl.isMoving == true){
             fiber_sleep(3);//ms 
         }
 
+        collisions+=1;
         mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
         mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);
         mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
     }
+    
+    /*DON'T JUMP OUT OF MAIN*/
+    while(1){
+        display.print("+");
+        fiber_sleep(2000);//ms   
+        display.print("x");
+    }
+	release_fiber();
+
+    //OLD STUFF BELOW FOR DEBUGGING
 
     //display.scroll("321");   
 
@@ -68,23 +94,4 @@ int main() {
     // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKRIGHT);
     // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKLEFT);
     // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
-
-    /*DON'T JUMP OUT OF MAIN*/
-    while(1){
-        fiber_sleep(1500);//ms   
-        // flipLed();     
-    }
-	release_fiber();
 }
-
-
-/*
-WARNING
-=======
-micro:bit runtime components should always be brought up as global variables.
-They should not be created as local variables - either in your main method or 
-anywhere else. The reason for this is the the runtime is a multi-threaded 
-environment, and any variables created in stack memory (like local variables) 
-may be paged out by the scheduler, and result in instability if they utilise 
-interrupts or are accessed by other threads. So... don't do it!
-*/
