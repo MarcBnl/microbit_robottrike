@@ -36,8 +36,8 @@ int main() {
         }
 
         mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
-        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
-        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);fiber_sleep(1000);//ms        
+        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);
+        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
     }
 
     //display.scroll("321");   
@@ -57,14 +57,14 @@ int main() {
 
 
     // MotorControl mtrCtrl;
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);fiber_sleep(1000);//ms
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);fiber_sleep(1000);//ms
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);fiber_sleep(1000);//ms
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);
+    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
     // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKRIGHT);
     // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKLEFT);
     // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);

@@ -16,7 +16,7 @@
         public:
             MotorControl(void);
             ~MotorControl(void){};
-            void setMotorFunction(int function);
+            void setMotorFunction(int function, int waitAfterSet_ms=1000);
             void getMotorFunction(int &funcM1, int &funcM2);
         private:
     };

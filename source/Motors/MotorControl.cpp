@@ -12,7 +12,7 @@
         //motor2F.reverseDirections();
     };
 
-    void MotorControl::setMotorFunction(int function)
+    void MotorControl::setMotorFunction(int function, int waitAfterSet_ms)
     {
         switch (function){
             case MOTOR_FUNCTION_EVT_COAST:
@@ -57,6 +57,7 @@
                 motor2F.coast();
                 break;
         }
+        fiber_sleep(waitAfterSet_ms);//ms
     };
 
     void MotorControl::getMotorFunction(int &funcM1, int &funcM2)
