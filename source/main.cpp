@@ -43,7 +43,7 @@ int main() {
 
     int const collisionsMax=5;
     int collisions=0;
-    While(collisions<=collisionsMax){
+    while(collisions<=collisionsMax){
         mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);
         
         while(accelerometerCtrl.isMoving == true){

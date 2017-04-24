@@ -1,7 +1,7 @@
 #include "RobotTrikeManager.h"
 
 
-    void RobotTrikeManager::RobotTrikeManager(void)
+    RobotTrikeManager::RobotTrikeManager(void)
     {
 
     };
