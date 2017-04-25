@@ -51,15 +51,16 @@ int main() {
         }
 
         collisions+=1;
-        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
-        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);
-        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
+        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST,100);
+        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE,500);
+        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN,100);
     }
-    
+
     /*DON'T JUMP OUT OF MAIN*/
+    displCtrl.clearDisplay();
     while(1){
         display.print("+");
-        fiber_sleep(2000);//ms   
+        fiber_sleep(1000);//ms   
         display.print("x");
     }
 	release_fiber();

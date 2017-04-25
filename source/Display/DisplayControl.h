@@ -21,6 +21,7 @@
         public:
             DisplayControl(MicroBitMessageBus *msgBus,MicroBitDisplay *display);
             ~DisplayControl(void);
+            void clearDisplay(void);
         private:
             MicroBitMessageBus *ubitMsgBus;
             MicroBitDisplay *ubitDisplay;
@@ -31,6 +32,7 @@
             void updateSonarInfo(MicroBitEvent e);
             void updateAccelerometerInfo(MicroBitEvent e);
             void updateImageWithSonarInfo(int distanceNr);
+            void ignoreMsgbusEvents(void);
     };
 
 // } /*dsplCtrl*/

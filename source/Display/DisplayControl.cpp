@@ -8,6 +8,7 @@
         displayImage.clear();
         ubitMsgBus=msgBus;
         ubitDisplay=display;
+        ubitDisplay->setBrightness(200);//255 is maximum
 
         ubitMsgBus->listen(MOTOR1_ID, MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
         ubitMsgBus->listen(MOTOR1_ID, MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
@@ -37,7 +38,12 @@
 
     DisplayControl::~DisplayControl(void)
     {
-        ubitMsgBus->ignore(MOTOR1_ID, MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
+        ignoreMsgbusEvents();
+    };
+
+    void DisplayControl::ignoreMsgbusEvents(void)
+    {
+    ubitMsgBus->ignore(MOTOR1_ID, MOTOR_FUNCTION_EVT_COAST, this, &DisplayControl::updateMotor1Info);
         ubitMsgBus->ignore(MOTOR1_ID, MOTOR_FUNCTION_EVT_REVERSE, this, &DisplayControl::updateMotor1Info);
         ubitMsgBus->ignore(MOTOR1_ID, MOTOR_FUNCTION_EVT_FORWARD, this, &DisplayControl::updateMotor1Info);
         ubitMsgBus->ignore(MOTOR1_ID, MOTOR_FUNCTION_EVT_BRAKE, this, &DisplayControl::updateMotor1Info);
@@ -61,6 +67,13 @@
         ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_VECTORING, this, &DisplayControl::updateAccelerometerInfo);
         ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_MOVING, this, &DisplayControl::updateAccelerometerInfo);
         ubitMsgBus->ignore(ACCELEROMETER_ID, ACCELEROMETER_EVT_COLLISION, this, &DisplayControl::updateAccelerometerInfo);           
+    };
+
+    void DisplayControl::clearDisplay(void)
+    {
+        ignoreMsgbusEvents();
+        ubitDisplay->clear();
+        ubitDisplay->setBrightness(255);//255 is maximum
     };
 
     void DisplayControl::updateMotor1Info(MicroBitEvent e)
