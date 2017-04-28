@@ -36,24 +36,27 @@ MicroBitAccelerometer accelerometer = MicroBitAccelerometer(i2c);
 int main() {
 
     DisplayControl displCtrl(&msgBus,&display);
-    MotorControl mtrCtrl;
+    MotorControl mtrCtrl(FRONT_IS_FLAT_SIDE);
     AccelerometerControl accelerometerCtrl(&accelerometer);
 
     while (accelerometerCtrl.isCalibrated == false){fiber_sleep(1);}
 
     int const collisionsMax=5;
     int collisions=0;
+    int notMovingDebounceCounter=0;
     while(collisions<=collisionsMax){
         mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);
-        
-        while(accelerometerCtrl.isMoving == true){
-            fiber_sleep(3);//ms 
-        }
+        fiber_sleep(3);//ms 
 
-        collisions+=1;
-        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST,100);
-        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE,500);
-        mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN,100);
+        if (accelerometerCtrl.isMoving == false) notMovingDebounceCounter+=1;
+
+        if (notMovingDebounceCounter==2){
+            collisions+=1;
+            mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST,100);
+            mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE,200);
+            mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN,100);
+            notMovingDebounceCounter=0;
+        }
     }
 
     /*DON'T JUMP OUT OF MAIN*/

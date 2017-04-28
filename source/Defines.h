@@ -1,6 +1,9 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+#define FRONT_IS_ROUND_SIDE                 1
+#define FRONT_IS_FLAT_SIDE                  2
+
 #define MOTOR1_ID                           1501  // Motor Control Pins 
 #define MOTOR2_ID                           1502  // MOTOR1      MOTOR2
 #define MOTOR_FUNCTION_EVT_ANY             -1     // P8  P12     P0  P16

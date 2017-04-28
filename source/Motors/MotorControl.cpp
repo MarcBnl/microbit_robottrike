@@ -2,14 +2,12 @@
 
 // namespace mtrCtrl{
 
-    MotorControl::MotorControl(void):
+    MotorControl::MotorControl(int whatIsFront):
         motor1F(),
         motor2F()
-    {      
-        //FIXME
-        motor1F.reverseDirections();
-        //OR
-        //motor2F.reverseDirections();
+    {
+        if (whatIsFront==FRONT_IS_ROUND_SIDE) motor1F.reverseDirections();
+        if (whatIsFront==FRONT_IS_FLAT_SIDE) motor2F.reverseDirections();
     };
 
     void MotorControl::setMotorFunction(int function, int waitAfterSet_ms)

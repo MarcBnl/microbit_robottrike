@@ -9,12 +9,12 @@
 
     class MotorControl 
     {
-        static const int spinDuration_us=450000;
-        static const int turnDuration_us=450000;
+        static const int spinDuration_us=200000;
+        static const int turnDuration_us=200000;
         Motor1Function motor1F;
         Motor2Function motor2F;
         public:
-            MotorControl(void);
+            MotorControl(int whatIsFront=FRONT_IS_ROUND_SIDE);
             ~MotorControl(void){};
             void setMotorFunction(int function, int waitAfterSet_ms=0);
             void getMotorFunction(int &funcM1, int &funcM2);
