@@ -27,17 +27,13 @@ MicroBitMessageBus msgBus;
 MicroBitDisplay display;
 MicroBitI2C i2c = MicroBitI2C(I2C_SDA0, I2C_SCL0);
 MicroBitAccelerometer accelerometer = MicroBitAccelerometer(i2c); 
-/*GLOBAL OBJECTS*/
-// DisplayControl displCtrl(&msgBus,&display);
-// MotorControl mtrCtrl;
-// AccelerometerControl accelerometerCtrl(&accelerometer);
-//SonarControl snrCtrl;
 
 int main() {
 
     DisplayControl displCtrl(&msgBus,&display);
     MotorControl mtrCtrl(FRONT_IS_FLAT_SIDE);
     AccelerometerControl accelerometerCtrl(&accelerometer);
+    //SonarControl snrCtrl;
 
     while (accelerometerCtrl.isCalibrated == false){fiber_sleep(1);}
 
@@ -67,35 +63,4 @@ int main() {
         display.print("x");
     }
 	release_fiber();
-
-    //OLD STUFF BELOW FOR DEBUGGING
-
-    //display.scroll("321");   
-
-    // displCtrl.updateSonarInfo(150);fiber_sleep(1000);//ms 
-    // displCtrl.updateSonarInfo(80);fiber_sleep(1000);//ms
-    // displCtrl.updateSonarInfo(70);fiber_sleep(1000);//ms
-    // displCtrl.updateSonarInfo(25);fiber_sleep(1000);//ms
-    // displCtrl.updateMotorsInfo(2,3);
-    // displCtrl.updateSonarInfo(150);
-    // fiber_sleep(3000);//ms 
-    // displCtrl.updateMotorsInfo(1,1);
-    // fiber_sleep(3000);//ms
-    // displCtrl.updateSonarInfo(50);
-    // MicroBitEvent evt(MICROBIT_ID_TEST, MICROBIT_DISPLAY_EVT_UPDATE);
-    // fiber_sleep(3000);//ms 
-
-
-    // MotorControl mtrCtrl;
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_FORWARD);
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_REVERSE);
-    //  mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_COAST);
-    // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKRIGHT);
-    // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_TURNBACKLEFT);
-    // mtrCtrl.setMotorFunction(MOTOR_FUNCTION_EVT_SPIN);
 }
