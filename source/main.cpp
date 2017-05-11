@@ -1,3 +1,15 @@
+#include "MicroBit.h"
+#include "MicroBitEvent.h"
+#include "DigitalInOut.h"
+#include "mbed.h"
+
+#include "Defines.h"
+#include "source/Display/DisplayControl.h"
+#include "source/Motors/MotorControl.h"
+#include "source/Sonar/SonarControl.h"
+#include "source/Accelerometer/AccelerometerControl.h"
+#include "source/RobotTrikeManager/RobotTrikeManager.h"
+
 /*
 WARNING
 =======
@@ -8,19 +20,6 @@ environment, and any variables created in stack memory (like local variables)
 may be paged out by the scheduler, and result in instability if they utilise 
 interrupts or are accessed by other threads. So... don't do it!
 */
-
-#include "MicroBit.h"
-#include "MicroBitEvent.h"
-#include "DigitalInOut.h"
-#include "mbed.h"
-
-#include "Defines.h"
-#include "source/Display/DisplayControl.h"
-#include "source/Motors/MotorControl.h"
-#include "source/Sonar/SonarControl.h"
-#include "source/Sonar/Sonar.h"
-#include "source/Accelerometer/AccelerometerControl.h"
-#include "source/RobotTrikeManager/RobotTrikeManager.h"
 
 /*GLOBAL RUNTIME COMPONENTS*/
 MicroBitMessageBus msgBus;
